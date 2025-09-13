@@ -1,3 +1,11 @@
+# Tetzaveh Audio - 2nd Aliyah
+
+Normalized audio clips, by verse, of Tetzaveh, 2nd aliyah. 
+Exodus 28:13 - 28:30
+
+Audio source: [The Bayit - Hebrew Institute of Riverdale](https://www.thebayit.org/tetzaveh#)
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
