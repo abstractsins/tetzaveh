@@ -1,0 +1,17 @@
+.clipsBody {
+    background-color: var(--background-2);
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+    border-radius: 25px;
+    margin: 5vh 2.5vw;
+    max-width: 60%;
+    padding: 5vh 1.5vw;
+}
+
+.clipArea {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2vw;
+}
