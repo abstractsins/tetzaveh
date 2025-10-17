@@ -9,8 +9,13 @@
 
 .header {
     display: flex;
+    margin: 1.25vh 0.25vw;
+}
+
+.headerTitles {
+    display: flex;
     flex-direction: column;
-    margin: 2vh 1vw;
+    min-width: fit-content;
 }
 
 .clipBody {

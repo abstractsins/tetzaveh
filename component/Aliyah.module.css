@@ -26,8 +26,16 @@
 
 .header {
     display: flex;
-    flex-direction: column;
+    margin: 2vh 1vw;
+    width: 100%;
 }
+
+.headerTitles {
+    display: flex;
+    flex-direction: column;
+    min-width: fit-content;
+}
+
 
 .clipBody audio {
     width: 100%;
