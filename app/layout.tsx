@@ -1,31 +1,36 @@
 import type { Metadata } from "next";
 
 import {
-    Geist,
-    Geist_Mono,
-    Barlow_Semi_Condensed,
-    Eagle_Lake
-} from "next/font/google";import "@style/globals.css";
+  Geist,
+  Geist_Mono,
+  Barlow_Semi_Condensed,
+  Eagle_Lake
+} from "next/font/google"; import "@style/globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap"
+
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap"
 });
 
 const barlowSemiCondensed = Barlow_Semi_Condensed({
-    variable: "--barlow-semi-condensed",
-    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"]
+  variable: "--barlow-semi-condensed",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  display: "swap"
 });
 
 const eagleLake = Eagle_Lake({
-    variable: "--eagle-lake",
-    weight: "400"
-});
+  variable: "--eagle-lake",
+  weight: "400",
+  display: "swap"
+});r
 
 
 export const metadata: Metadata = {
