@@ -30,7 +30,7 @@ const eagleLake = Eagle_Lake({
   variable: "--eagle-lake",
   weight: "400",
   display: "swap"
-});r
+});
 
 
 export const metadata: Metadata = {
