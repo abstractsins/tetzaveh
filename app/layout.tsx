@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "@style/globals.css";
+
+import {
+    Geist,
+    Geist_Mono,
+    Barlow_Semi_Condensed,
+    Eagle_Lake
+} from "next/font/google";import "@style/globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -11,6 +16,17 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const barlowSemiCondensed = Barlow_Semi_Condensed({
+    variable: "--barlow-semi-condensed",
+    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"]
+});
+
+const eagleLake = Eagle_Lake({
+    variable: "--eagle-lake",
+    weight: "400"
+});
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${barlowSemiCondensed.variable} ${eagleLake.variable}`}>
         {children}
       </body>
     </html>

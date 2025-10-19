@@ -6,7 +6,7 @@ import styles from './AudioControls.module.css';
 
 
 interface Props {
-    src: string;
+    src: string | undefined;
     ref: RefObject<HTMLAudioElement | null>;
 }
 

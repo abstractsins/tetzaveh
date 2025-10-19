@@ -10,7 +10,7 @@ interface Props {
 export default function VerseClips({ clips }: Props) {
     return (
         <div className={styles.clipsBody}>
-            <h2>Verse Clips</h2>
+            <h2 className='section-title'>Verse Clips</h2>
             <div className={styles.clipArea}>
                 {clips.tracks.map((track, i) =>
                     <AudioClip

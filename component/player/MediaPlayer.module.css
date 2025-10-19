@@ -1,0 +1,61 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid var(--foreground);
+    border-radius: var(--radius-main);
+    width: clamp(300px, 60vw, 1600px);
+    height: clamp(150px, 33vh, 350px);
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    padding: 1vh 2vw;
+}
+
+.currentTrack {
+    display: flex;
+    height: 100%;
+    /* grid-template-rows: 18px 48px 24px auto; */
+    /* label, title, verse, controls */
+    row-gap: 12px;
+    min-height: 120px;
+}
+
+.currentTrackOutput {
+    margin: 0 auto;
+    width: 70%;
+}
+
+.currentTrackMeta {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.nowPlayingHeader h2 {
+    font-family: var(--barlow-semi-condensed);
+    margin: 2vh 1vw;
+    font-weight: 400;
+}
+
+.artwork {}
+
+.trackTitle {
+    font-family: var(--eagle-lake);
+    font-size: clamp(16pt, 1vw + .5rem, 32pt);
+    margin: 4px 0;
+}
+
+.artistName {}
+
+.verse {
+    margin: 4px 0;
+    font-size: clamp(12pt, .75vw + .25rem, 26pt);
+}
+
+.upNext {}
+
+.controlArea {
+    display: flex;
+}

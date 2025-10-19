@@ -1,0 +1,36 @@
+.wrapper {
+    border: 1px solid transparent;
+    padding: 4px 7px;
+    border-radius: 7px;
+    color: var(--foreground);
+    transition: all 150ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16pt;
+}
+
+.wrapper:hover {
+    cursor: pointer;
+    color: gold;
+    border: 1px solid whitesmoke;
+}
+
+.wrapper:active,
+.on {
+    background-color: var(--background);
+    color: gold;
+    border-color: slategray;
+}
+
+.pause {
+    color: yellow
+}
+
+.stop {
+    color: firebrick;
+}
+
+.play {
+    color: greenyellow;
+}

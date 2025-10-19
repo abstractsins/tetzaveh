@@ -31,10 +31,28 @@ export interface Track {
     title: string;
     src: string;
     verse: string;
+    wordCount: number;
 }
 
 export interface Playlist {
     title: string;
     tracks: Track[];
     notes?: string;
+}
+
+export interface MediaPlayerContextValue {
+    currentTrack: Track | null;
+    setCurrentTrack: (t: Track | null) => void;
+
+    isPlaying: boolean;
+    setPlaying: (b: boolean) => void;
+
+    isPaused: boolean;
+    setPaused: (b: boolean) => void;
+
+    isTrackLooping: boolean;
+    setTrackLooping: (b: boolean) => void;
+
+    isPlaylistLooping: boolean;
+    setPlaylistLooping: (b: boolean) => void;
 }

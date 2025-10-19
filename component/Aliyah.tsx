@@ -19,6 +19,7 @@ export default function Aliyah({ aliyah }: Props) {
 
     return (
         <div className={styles.body}>
+            <h2 className='section-title'>Whole Clip</h2>
             <div className={styles.clipBody}>
                 <div className={styles.header}>
                     <div className={styles.headerTitles}>
