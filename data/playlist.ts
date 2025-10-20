@@ -1,6 +1,7 @@
 import {
-    Playlist, 
-    Track
+    Playlist,
+    Track,
+    TrackFullMeta
 } from '@types'
 
 // * INDIVIDUAL CLIPS
@@ -114,7 +115,11 @@ const t2v18: Track = {
     wordCount: 19
 }
 
-
+const applyCredit = (track: Track): TrackFullMeta => {
+    const credit = 'The Bayit, Hebrew Institute of Riverdale';
+    const creditUrl = 'https://www.thebayit.org/tetzaveh#';
+    return {...track, credit, creditUrl};
+}
 
 
 // * ASSEMBLED PLAYLIST
@@ -127,6 +132,6 @@ export const Tetzaveh2Clips: Playlist = {
         t2v10, t2v11, t2v12,
         t2v13, t2v14, t2v15,
         t2v16, t2v17, t2v18
-    ],
+    ].map(applyCredit),
     notes: 'Exodus 28:13-30'
 }

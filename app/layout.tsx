@@ -1,35 +1,40 @@
 import type { Metadata } from "next";
 
+import "@style/globals.css";
+import "@style/mediaPlayerGlobal.css";
+
+import 'dseg/css/dseg.css';
+
 import {
   Geist,
   Geist_Mono,
   Barlow_Semi_Condensed,
   Eagle_Lake
-} from "next/font/google"; import "@style/globals.css";
+} from "next/font/google"; 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-  display: "swap"
+  display: "block"
 
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-  display: "swap"
+  display: "block"
 });
 
 const barlowSemiCondensed = Barlow_Semi_Condensed({
   variable: "--barlow-semi-condensed",
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  display: "swap"
+  display: "block"
 });
 
 const eagleLake = Eagle_Lake({
   variable: "--eagle-lake",
   weight: "400",
-  display: "swap"
+  display: "block"
 });
 
 

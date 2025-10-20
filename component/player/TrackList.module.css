@@ -1,9 +1,9 @@
 .wrapper {
-    background-color: rgba(12, 13, 18, 0.5);
+    background-image: linear-gradient(rgba(12, 13, 18, 0.75), rgba(12, 13, 18, 0.75), rgb(0, 0, 0));
     display: flex;
     border: 1px solid var(--foreground);
     border-radius: var(--radius-main);
-    width: clamp(300px, 60vw, 1600px);
+    width: clamp(300px, 80vw, 1600px);
     height: clamp(150px, 55vh, 800px);
     margin-top: 4vh;
     overflow-y: scroll;
@@ -17,7 +17,6 @@
 }
 
 .body {
-
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

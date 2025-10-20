@@ -27,6 +27,6 @@
       "@audio/*": ["./public/audio/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.tsx.old"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.tsx.old", "app/player/layout.tsx"],
   "exclude": ["node_modules"]
 }

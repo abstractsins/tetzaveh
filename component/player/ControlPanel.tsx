@@ -2,7 +2,7 @@
 
 import styles from './ControlPanel.module.css';
 
-import { useRef } from 'react';
+import { Tetzaveh2Clips } from '@/data/playlist';
 
 import {
     PlayIcon,
@@ -10,6 +10,7 @@ import {
     SkipBack,
     SquareStopIcon,
     PauseIcon,
+    ArrowLeftToLine
 } from "lucide-react";
 
 import { TiArrowLoop, TiArrowLoopOutline } from "react-icons/ti";
@@ -21,29 +22,30 @@ import Button from './Button';
 export default function ControlPanel() {
 
     const {
+        registerPlaylist,
         currentTrack,
         setCurrentTrack,
-        isPlaying,
-        isPaused,
-        setPlaying,
-        setPaused,
-        setTrackLooping,
-        isTrackLooping,
-        setPlaylistLooping,
-        isPlaylistLooping
+        isPlaying, isPaused,
+        setPlaying, setPaused,
+        setTrackLooping, isTrackLooping,
+        setAutoPlay, isAutoPlay,
+        play, pause, stop, restartTrack, nextTrack, prevTrack,
+        setVolume, getVolume, seekToZero
     } = useMediaPlayer();
 
-    const ref = useRef<HTMLAudioElement>(null);
 
     const handlePlay = () => {
         if (!currentTrack) {
             // start playlist
+            registerPlaylist(Tetzaveh2Clips);
+            setCurrentTrack(Tetzaveh2Clips.tracks[0]);
         }
 
         if (!isPlaying) {
             setPlaying(true);
             setPaused(false);
         }
+        play();
     };
 
     const handlePause = () => {
@@ -55,6 +57,7 @@ export default function ControlPanel() {
         } else {
             console.error('no track is playing');
         }
+        pause();
     };
 
     const handleStop = () => {
@@ -65,17 +68,23 @@ export default function ControlPanel() {
         } else {
             console.error('no track is playing');
         }
+        stop();
 
     };
 
-    const handleSkipForward = () => { };
-    const handleRestartTrack = () => { };
+    const handleSkipForward = () => {
+        nextTrack();
+    };
+    const handleSkipBack = () => {
+        prevTrack();
+    };
 
     const handleLoopTrack = () => setTrackLooping(!isTrackLooping);;
 
-    const handleLoopPlaylist = () => setPlaylistLooping(!isPlaylistLooping);
+    const handleAutoPlay = () => setAutoPlay(!isAutoPlay);
 
     return (
+
         <div className={styles.wrapper}>
             <div className={styles.body}>
 
@@ -83,22 +92,41 @@ export default function ControlPanel() {
                     ? <Button title="Play" className="play" action={handlePlay} Icon={PlayIcon} />
                     : <Button title="Pause" className="pause" action={handlePause} Icon={PauseIcon} />
                 }
+
                 <Button
                     title="Restart Track"
-                    action={() => { }}
+                    className='restartTrack'
+                    action={() => {
+                        if (isPlaying) restartTrack();
+                        else seekToZero();
+
+                    }}
+                    Icon={ArrowLeftToLine}
+                    disabled={!currentTrack}
+                />
+
+                <Button
+                    title="Previous Track"
+                    className='prevTrack'
+                    action={handleSkipBack}
                     Icon={SkipBack}
+                    disabled={!currentTrack}
                 />
 
                 <Button
                     title="Next Track"
-                    action={() => { }}
+                    className='nextTrack'
+                    action={handleSkipForward}
                     Icon={SkipForwardIcon}
+                    disabled={!currentTrack}
                 />
 
                 <Button
                     title="Stop"
-                    className={`${isPlaying || isPaused ? 'stop' : ''}`}
+                    className={'stop'}
                     action={handleStop} Icon={SquareStopIcon}
+                    disabled={!currentTrack}
+
                 />
 
                 <Button
@@ -106,12 +134,13 @@ export default function ControlPanel() {
                     className={`${isTrackLooping ? 'on' : ''}`}
                     action={handleLoopTrack}
                     Icon={TiArrowLoop}
+                    disabled={!currentTrack}
                 />
 
                 <Button
-                    title="Loop Playlist"
-                    className={`${isPlaylistLooping ? 'on' : ''}`}
-                    action={handleLoopPlaylist}
+                    title="Autoplay"
+                    className={`${isAutoPlay ? 'on' : ''}`}
+                    action={handleAutoPlay}
                     Icon={TiArrowLoopOutline}
                 />
 

@@ -1,15 +1,15 @@
 .wrapper {
+    background-image: linear-gradient(rgb(30, 30, 30), rgb(10, 10, 10), black, black);
     display: flex;
     flex-direction: column;
     border: 3px solid var(--foreground);
     border-radius: var(--radius-main);
-    width: clamp(300px, 60vw, 1600px);
+    width: clamp(300px, 80vw, 1600px);
     height: clamp(150px, 33vh, 350px);
 }
 
 .body {
     display: flex;
-    flex-direction: column;
     padding: 1vh 2vw;
 }
 
@@ -23,39 +23,110 @@
 }
 
 .currentTrackOutput {
+    width: 100%;
     margin: 0 auto;
-    width: 70%;
+}
+
+.waveWrapper {
+    border-radius: 10px;
+    padding: 2vh 1vw;
+    background-image: linear-gradient(rgba(112, 128, 144, 0.85), rgba(112, 128, 144, 0.75), rgba(112, 128, 144, 0.35));
+    background-color:
 }
 
 .currentTrackMeta {
     display: flex;
     flex-direction: column;
     height: 100%;
+    width: 350px;
 }
 
 .nowPlayingHeader h2 {
     font-family: var(--barlow-semi-condensed);
-    margin: 2vh 1vw;
+    margin: 2vh 0vw;
     font-weight: 400;
+    color: silver;
 }
 
 .artwork {}
 
 .trackTitle {
     font-family: var(--eagle-lake);
+    color: white;
     font-size: clamp(16pt, 1vw + .5rem, 32pt);
     margin: 4px 0;
 }
 
-.artistName {}
+.artistName {
+    color: whitesmoke;
+}
 
 .verse {
     margin: 4px 0;
+    color: silver;
+
     font-size: clamp(12pt, .75vw + .25rem, 26pt);
 }
 
-.upNext {}
+.upNext {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.upNextLabel {
+    font-style: italic;
+    color: silver;
+
+}
+
+.upNextValue {
+    color: silver;
+    font-size: clamp(12pt, .75vw, 18pt);
+}
 
 .controlArea {
     display: flex;
+}
+
+
+.leftSide {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+}
+
+.rightSide {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+.subWaveInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.timeReadouts {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(rgb(16, 16, 16), black);
+    justify-content: flex-end;
+    border-radius: 7px;
+    padding: 1vh .5vw;
+    font-size: clamp(14pt, .5vw + .5rem, 24pt);
+    color: rgba(178, 34, 34, 0.75);
+    font-family: 'DSEG7-Classic', monospace;
+    letter-spacing: 2;
+    width: 250px;
+    height: 45px;
+}
+
+.credit {
+    color: silver;
 }

@@ -1,3 +1,5 @@
+import type WaveSurfer from "wavesurfer.js";
+
 export type TorahBook = 'Genesis' | 'Exodus' | 'Leviticus' | 'Numbers' | 'Deuteronomy';
 
 export interface Parsha {
@@ -34,6 +36,11 @@ export interface Track {
     wordCount: number;
 }
 
+export interface TrackFullMeta extends Track {
+    credit?: string;
+    creditUrl?: string;
+}
+
 export interface Playlist {
     title: string;
     tracks: Track[];
@@ -41,8 +48,10 @@ export interface Playlist {
 }
 
 export interface MediaPlayerContextValue {
-    currentTrack: Track | null;
+    currentTrack: TrackFullMeta | null;
     setCurrentTrack: (t: Track | null) => void;
+
+    nextTrackInfo: Track | null;
 
     isPlaying: boolean;
     setPlaying: (b: boolean) => void;
@@ -53,6 +62,37 @@ export interface MediaPlayerContextValue {
     isTrackLooping: boolean;
     setTrackLooping: (b: boolean) => void;
 
-    isPlaylistLooping: boolean;
-    setPlaylistLooping: (b: boolean) => void;
+    isAutoPlay: boolean;
+    setAutoPlay: (b: boolean) => void;
+
+    wavesurfer: WaveSurfer | null;
+    registerWave: (ws: WaveSurfer | null) => void;
+
+    registerPlaylist: (pl: Playlist | null) => void;
+    playTrackAt: (index: number) => void;
+
+    // TRANSPORT
+    play: () => void;
+    pause: () => void;
+    stop: () => void;
+    restartTrack: () => void;
+
+    // VOLUME
+    setVolume: (v: number) => void; // 0..1
+    getVolume: () => number;        // 0..1
+
+    seekToZero: () => void;
+    prevTrack: () => void;
+    nextTrack: () => void;
+
+    handleFinish: () => void;
+
+    consumeAutoplay: () => void;
+
+    // TIME
+    currentTrackDuration: number | null;
+    currentTrackPosition: number | null;
+    setCurrentTrackPosition: (pos: number) => void;
+    handlePositionUpdate: (pos: number) => void;
+    setCurrentTrackDuration: (n: number) => void;
 }

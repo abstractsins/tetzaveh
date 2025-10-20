@@ -76,3 +76,15 @@ h2.section-title {
     color-scheme: dark;
   }
 }
+
+.disabled {
+  color: black;
+  filter: opacity(.35);
+  user-select: none;
+}
+
+.disabled:hover {
+  cursor: default !important;
+  border-color: transparent !important;
+  background-color: initial !important;
+}

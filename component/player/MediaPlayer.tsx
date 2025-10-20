@@ -1,64 +1,119 @@
 'use client';
 
 import styles from './MediaPlayer.module.css';
-
+import Link from 'next/link';
 import WavesurferPlayer from '@wavesurfer/react';
 
 import { useMediaPlayer } from "@/context/PlayerContext";
 import ControlPanel from './ControlPanel';
 import { useState } from 'react';
-import { Track } from '@/type/types';
+import { TrackFullMeta } from '@/type/types';
+import VolumeSlider from './VolumeSlider';
 
 
 export default function MediaPlayer() {
 
-    const { currentTrack } = useMediaPlayer();
+    const {
+        currentTrack,
+        nextTrackInfo,
+        registerWave,
+        setVolume,
+        handleFinish,
+        consumeAutoplay,
+        currentTrackDuration, setCurrentTrackDuration,
+        currentTrackPosition,
+        handlePositionUpdate,
+        setCurrentTrackPosition,
+    } = useMediaPlayer();
 
-    const [wavesurfer, setWavesurfer] = useState<any>(null);
-
-    const emptyTrack: Track = {
-        title: '',
-        verse: '',
-        wordCount: 0,
-        src: ''
-    }
-
-    const track = currentTrack ?? emptyTrack;
+    const track = currentTrack;
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.nowPlayingHeader}>
-                <h2>NOW PLAYING</h2>
-            </div>
-
 
             <div className={styles.body}>
+                <div className={styles.leftSide}>
 
-                <div className={styles.currentTrack}>
-                    <div className={styles.currentTrackMeta}>
-
-                        <div className={styles.trackTitle}>
-                            {track.title}
-                        </div>
-                        <div className={styles.verse}>
-                            {track.verse}
-                        </div>
+                    <div className={styles.nowPlayingHeader}>
+                        <h2>NOW PLAYING</h2>
                     </div>
+
+
+                    {/* LEFT SIDE */}
+
+                    {/* TRACK INFO */}
+                    <div className={styles.currentTrack}>
+                        <div className={styles.currentTrackMeta}>
+
+                            <div className={styles.trackTitle}>
+                                {track?.title}
+                            </div>
+                            <div className={styles.verse}>
+                                {track?.verse}
+                            </div>
+                            <div className={styles.credit}>
+                                {track?.creditUrl
+                                    ? (<Link href={track?.creditUrl} target='new'>{track?.credit}</Link>)
+                                    : (track?.credit)
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {/* CONTROL PANEL */}
+                    <div className={styles.controlArea}>
+                        <ControlPanel />
+                    </div>
+
+                </div>
+
+
+                {/* RIGHT SIDE */}
+                <div className={styles.rightSide}>
+
                     <div className={styles.currentTrackOutput}>
-                        <WavesurferPlayer
-                            url={`/audio/${track.src}`}
-                            height={100}
-                            waveColor="slategray"
-                            progressColor="gold"
-                            onReady={ws => setWavesurfer(ws)}
-                            width='100%'
-                        />
+                        <div className={styles.waveWrapper}>
+                            <WavesurferPlayer
+                                url={track?.src ? `/audio/${track?.src}` : undefined}
+                                waveColor="cyan"
+                                progressColor="gold"
+                                onReady={(ws) => {
+                                    registerWave(ws);
+                                    setVolume(0.8); // default
+                                    consumeAutoplay();
+                                    setCurrentTrackDuration(ws.getDuration());
+                                    setCurrentTrackPosition(0.000);
+                                    ws.play();
+                                }}
+                                onAudioprocess={(ws) => {
+                                    handlePositionUpdate(ws.getCurrentTime())
+                                }}
+                                onFinish={handleFinish}
+                            />
+                        </div>
+
+                        <div className={styles.subWaveInfo}>
+                            <VolumeSlider />
+                            <div className={styles.upNext}>
+                                {currentTrack &&
+                                    <>
+                                        <span className={styles.upNextLabel}>up next:</span>
+                                        <span className={styles.upNextValue}>{nextTrackInfo?.title}, {nextTrackInfo?.verse}</span>
+                                    </>
+                                }
+                            </div>
+                            <div className={styles.timeReadouts}>
+                                {currentTrack &&
+                                    <span>{currentTrackPosition?.toFixed(3)} : {currentTrackDuration?.toFixed(3)}</span>
+                                }
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
-                <div className={styles.controlArea}>
-                    <ControlPanel />
-                </div>
+
 
 
             </div>
