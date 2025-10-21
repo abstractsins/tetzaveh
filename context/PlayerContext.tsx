@@ -15,7 +15,7 @@ import {
     useEffect,
 } from 'react';
 
-import type WaveSurfer from 'wavesurfer.js';
+import type WaveSurfer from '@wavesurfer/react';
 import { MediaPlayerContextValue, TrackFullMeta, Track, Playlist } from '@types';
 
 const MediaPlayerContext = createContext<MediaPlayerContextValue | undefined>(undefined);
