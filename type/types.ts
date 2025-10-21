@@ -80,6 +80,7 @@ export interface MediaPlayerContextValue {
     // VOLUME
     setVolume: (v: number) => void; // 0..1
     getVolume: () => number;        // 0..1
+    currentVolume: number;
 
     seekToZero: () => void;
     prevTrack: () => void;

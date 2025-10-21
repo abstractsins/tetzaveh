@@ -38,6 +38,8 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
     const [playlist, setPlaylist] = useState<TrackFullMeta[]>([]);
     const [index, setIndex] = useState(-1);
 
+    const [currentVolume, setCurrentVolume] = useState<number>(.85);
+
     // identify a track uniquely
     const keyOf = (t: TrackFullMeta | null) => t?.src || `${t?.title}|${t?.verse}`;
 
@@ -107,7 +109,7 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
         shouldAutoplayRef.current = isPlaying;
         const t = playlist[i];
         setCurrentTrack(t);
-        setNextTrackInfo(playlist[i+1] || playlist[0]);
+        setNextTrackInfo(playlist[i + 1] || playlist[0]);
         setIndex(i);
     }, [playlist, isPlaying]);
 
@@ -166,10 +168,15 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
     }, []);
 
     // volume
-    const setVolume = useCallback((v: number) => {
-        waveRef.current?.setVolume(v*.01);
+    const setVolume = useCallback((v: number) => { // 0.00 - 1
+        waveRef.current?.setVolume(v);
+        setCurrentVolume(v);
     }, []);
     const getVolume = useCallback(() => waveRef.current?.getVolume?.() ?? 1, []);
+
+    // useEffect(() => {
+    //     setCurrentVolume(getVolume());
+    // }, [currentVolume, getVolume]);
 
     const value: MediaPlayerContextValue = useMemo(() => ({
         currentTrack, setCurrentTrack,
@@ -186,14 +193,16 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
         currentTrackDuration,
         setCurrentTrackPosition,
         handlePositionUpdate, currentTrackPosition, setCurrentTrackDuration,
-        nextTrackInfo
+        nextTrackInfo,
+        currentVolume
     }), [
         currentTrack, isPlaying, isPaused, isTrackLooping, isAutoPlay,
         registerPlaylist, registerWave, play, pause, stop, restartTrack,
         setVolume, getVolume, playTrackAt, handleFinish, seekToZero,
         setCurrentTrackPosition,
         nextTrack, prevTrack, consumeAutoplay, currentTrackDuration, currentTrackPosition, handlePositionUpdate, setCurrentTrackDuration,
-        nextTrackInfo
+        nextTrackInfo,
+        currentVolume
     ]);
 
     return (

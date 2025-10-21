@@ -6,8 +6,6 @@ import WavesurferPlayer from '@wavesurfer/react';
 
 import { useMediaPlayer } from "@/context/PlayerContext";
 import ControlPanel from './ControlPanel';
-import { useState } from 'react';
-import { TrackFullMeta } from '@/type/types';
 import VolumeSlider from './VolumeSlider';
 
 
@@ -24,6 +22,7 @@ export default function MediaPlayer() {
         currentTrackPosition,
         handlePositionUpdate,
         setCurrentTrackPosition,
+        currentVolume
     } = useMediaPlayer();
 
     const track = currentTrack;
@@ -80,7 +79,7 @@ export default function MediaPlayer() {
                                 progressColor="gold"
                                 onReady={(ws) => {
                                     registerWave(ws);
-                                    setVolume(0.8); // default
+                                    setVolume(currentVolume); // default
                                     consumeAutoplay();
                                     setCurrentTrackDuration(ws.getDuration());
                                     setCurrentTrackPosition(0.000);
@@ -94,7 +93,9 @@ export default function MediaPlayer() {
                         </div>
 
                         <div className={styles.subWaveInfo}>
+
                             <VolumeSlider />
+
                             <div className={styles.upNext}>
                                 {currentTrack &&
                                     <>

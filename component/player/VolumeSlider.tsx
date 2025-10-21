@@ -1,38 +1,41 @@
-'use client';
+import { exportPages } from 'next/dist/export/worker';
 import styles from './VolumeSlider.module.css';
-import { useRef } from 'react';
-import { useMediaPlayer } from '@/context/PlayerContext';
 
-import React from 'react';
+import { useMediaPlayer } from '@/context/PlayerContext';
+import { useEffect, useRef } from 'react';
 
 export default function VolumeSlider() {
 
     const ref = useRef<HTMLInputElement>(null);
 
-    const { getVolume, setVolume } = useMediaPlayer();
+    const { currentVolume, setVolume } = useMediaPlayer();
 
-    const volume: number = getVolume() * 10000;
+    console.log(currentVolume);
 
-    console.log(volume);
+    useEffect(() => {
+        const volume = Number(ref.current?.value);
+        setVolume(volume/100);
+    }, [setVolume]);
+
+    const handleChange = () => {
+        const volume = Number(ref.current?.value); // 0-100
+        setVolume(volume/100);
+    };
 
     return (
-        <div className={styles.volumeWrapper}>
-
-            <form
-                style={{ ['--min' as any]: 0, ['--max' as any]: 100, ['--val' as any]: volume }}
-                onChange={() => {
-                    console.log(ref.current?.value);
-                    setVolume(Number(ref.current?.value) / 100);
-                }}
-            >
-                <input
-                    ref={ref}
-                    type="range" min="0" max="100" defaultValue="80" list="rangeList" />
-                <div className={styles.datalist} id="rangeList">
-                    <option label="min" value="0" />
-                    <option label="max" value="100" />
-                </div>
-            </form>
+        <div className={styles.wrapper}>
+            <input
+                ref={ref}
+                max={100}
+                min={0}
+                type='range'
+                defaultValue={85}
+                className={styles.input}
+                onChange={handleChange}
+            />
+            <div className={styles.volumeReadout}>
+                <span>{String(Math.round(currentVolume*100))}</span>
+            </div>
         </div>
     );
 }
