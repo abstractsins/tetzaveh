@@ -1,8 +1,9 @@
 .wrapper {
     background-image: linear-gradient(rgb(40, 40, 40), rgb(40, 40, 40), rgb(30, 30, 30), rgb(20, 20, 20));
-    margin: 2vh 0;
+    /* margin: 2vh 0; */
     padding: 1vh .5vw;
-    border-radius: 10px;
+    border-radius: var(--lcd-readout-border-radius);
+    height: 50px;
 }
 
 .body {

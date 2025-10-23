@@ -30,7 +30,7 @@ export default function ControlPanel() {
         setTrackLooping, isTrackLooping,
         setAutoPlay, isAutoPlay,
         play, pause, stop, restartTrack, nextTrack, prevTrack,
-        setVolume, getVolume, seekToZero
+        setVolume, getVolume, seekToZero, setIndex: setCurrentTrackIndex
     } = useMediaPlayer();
 
 
@@ -64,7 +64,8 @@ export default function ControlPanel() {
         if (currentTrack) {
             setPaused(false);
             setPlaying(false);
-            setCurrentTrack(null)
+            setCurrentTrack(null);
+            setCurrentTrackIndex(-1);
         } else {
             console.error('no track is playing');
         }

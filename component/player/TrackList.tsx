@@ -1,30 +1,51 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Tetzaveh2Clips } from '@/data/playlist';
-import VerseClips from '@/component/VerseClips';
-import { Playlist } from '@/type/types';
-
-import styles from './TrackList.module.css';
-import TrackItem from './TrackItem';
 import { useMediaPlayer } from '@/context/PlayerContext';
+import TrackItem from './TrackItem';
+import styles from './TrackList.module.css';
 
 export default function TrackList() {
-
-    const { registerPlaylist, currentTrack, playTrackAt } = useMediaPlayer();
-
-
-    const { setCurrentTrack } = useMediaPlayer()
+    const {
+        registerPlaylist,
+        currentTrack,
+        playTrackAt,
+        setCurrentTrack,
+        index: currentTrackIndex
+    } = useMediaPlayer();
 
     const tracks = Tetzaveh2Clips.tracks;
 
+    // create a ref array for all track items
+    const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    const setItemRef = (el: HTMLDivElement | null, index: number) => {
+        itemRefs.current[index] = el;
+    };
+
+    // scroll current track into view when index changes
     useEffect(() => {
-    }, [registerPlaylist, tracks]);
+        const el = itemRefs.current[currentTrackIndex];
+        if (el) {
+            el.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+            });
+        }
+    }, [currentTrackIndex]);
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.body}>
-                {tracks.map((track, i) =>
-                    <div key={track.src || `${track.title}|${track.verse}`} onClick={() => playTrackAt(i)}>
-                        <TrackItem
+                {tracks.map((track, i) => (
+                    <div
+                        key={track.src || `${track.title}|${track.verse}`}
+                        ref={el => setItemRef(el, i)}
+                        onClick={() => {
+                            registerPlaylist(Tetzaveh2Clips);
+                            setCurrentTrack(track);
+                            playTrackAt(i);
+                        }}
+                    >                        <TrackItem
                             onClick={() => {
                                 registerPlaylist(Tetzaveh2Clips);
                                 setCurrentTrack(track);
@@ -34,9 +55,10 @@ export default function TrackList() {
                             src={track.src}
                             verse={track.verse}
                             wordCount={track.wordCount}
+                            className={`${i === currentTrackIndex ? 'playing' : ''}`}
                         />
                     </div>
-                )}
+                ))}
             </div>
         </div>
     );

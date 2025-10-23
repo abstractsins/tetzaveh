@@ -1,25 +1,28 @@
-import { exportPages } from 'next/dist/export/worker';
 import styles from './VolumeSlider.module.css';
-
 import { useMediaPlayer } from '@/context/PlayerContext';
 import { useEffect, useRef } from 'react';
 
 export default function VolumeSlider() {
-
     const ref = useRef<HTMLInputElement>(null);
-
     const { currentVolume, setVolume } = useMediaPlayer();
 
-    console.log(currentVolume);
-
+    // Initialize slider fill on mount
     useEffect(() => {
-        const volume = Number(ref.current?.value);
-        setVolume(volume/100);
+        const el = ref.current;
+        if (!el) return;
+        const volume = Number(el.value);
+        setVolume(volume / 100);
+        el.style.setProperty('--value-percent', `${volume}%`);
     }, [setVolume]);
 
+    // Update both volume + CSS fill as user slides
     const handleChange = () => {
-        const volume = Number(ref.current?.value); // 0-100
-        setVolume(volume/100);
+        const el = ref.current;
+        if (!el) return;
+        const volume = Number(el.value);
+        setVolume(volume / 100);
+        const percent = (volume / Number(el.max)) * 100;
+        el.style.setProperty('--value-percent', `${percent}%`);
     };
 
     return (
@@ -28,13 +31,13 @@ export default function VolumeSlider() {
                 ref={ref}
                 max={100}
                 min={0}
-                type='range'
+                type="range"
                 defaultValue={85}
                 className={styles.input}
                 onChange={handleChange}
             />
             <div className={styles.volumeReadout}>
-                <span>{String(Math.round(currentVolume*100))}</span>
+                <span>{Math.round(currentVolume * 100)}</span>
             </div>
         </div>
     );

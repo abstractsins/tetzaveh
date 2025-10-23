@@ -90,6 +90,10 @@ export interface MediaPlayerContextValue {
 
     consumeAutoplay: () => void;
 
+    // current track index
+    index: number;
+    setIndex: (i: number) => void;
+
     // TIME
     currentTrackDuration: number | null;
     currentTrackPosition: number | null;

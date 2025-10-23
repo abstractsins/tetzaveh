@@ -1,7 +1,13 @@
+:root {
+    --lcd-readout-height: 50px;
+    --lcd-readout-border-radius: 7px;
+}
+
 .wrapper {
     background-image: linear-gradient(rgb(30, 30, 30), rgb(10, 10, 10), black, black);
     display: flex;
     flex-direction: column;
+    justify-content: center;
     border: 3px solid var(--foreground);
     border-radius: var(--radius-main);
     width: clamp(300px, 80vw, 1600px);
@@ -30,8 +36,8 @@
 .waveWrapper {
     border-radius: 10px;
     padding: 2vh 1vw;
-    background-image: linear-gradient(rgba(112, 128, 144, 0.85), rgba(112, 128, 144, 0.75), rgba(112, 128, 144, 0.35));
-    background-color:
+    background-image: linear-gradient(rgba(112, 128, 144, 0.5), rgba(112, 128, 144, 0.25), rgba(112, 128, 144, 0.20), rgba(112, 128, 144, 0.10));
+    height: 176px;
 }
 
 .currentTrackMeta {
@@ -101,13 +107,13 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .subWaveInfo {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     height: 80px;
 }
 
@@ -117,14 +123,14 @@
     align-items: center;
     background-image: linear-gradient(rgb(16, 16, 16), black);
     justify-content: flex-end;
-    border-radius: 7px;
+    border-radius: var(--lcd-readout-border-radius);
     padding: 1vh .5vw;
     font-size: clamp(14pt, .5vw + .5rem, 24pt);
     color: rgba(178, 34, 34, 0.75);
     font-family: 'DSEG7-Classic', monospace;
     letter-spacing: 2;
     width: 250px;
-    height: 45px;
+    height: var(--lcd-readout-height);
 }
 
 .credit {

@@ -1,18 +1,16 @@
 // TODO
-// * volume slider
 // * styling for current track in list
 
 'use client';
 
 import {
-    createContext,
-    useContext,
     useState,
     ReactNode,
     useMemo,
     useCallback,
     useRef,
     useEffect,
+    createContext, useContext,
 } from 'react';
 
 import type WaveSurfer from 'wavesurfer.js';
@@ -29,7 +27,7 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
     const [isPlaying, setPlaying] = useState(false);
     const [isPaused, setPaused] = useState(false);
     const [isTrackLooping, setTrackLooping] = useState(false);
-    const [isAutoPlay, setAutoPlay] = useState(false);
+    const [isAutoPlay, setAutoPlay] = useState(true);
 
     const [currentTrackDuration, setCurrentTrackDuration] = useState<number | null>(null);
     const [currentTrackPosition, setCurrentTrackPosition] = useState<number>(0.000);
@@ -106,18 +104,18 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
     const playTrackAt = useCallback((i: number) => {
         if (i < 0 || i >= playlist.length) return;
         // if we’re playing, arm for autoplay when WS is ready
-        shouldAutoplayRef.current = isPlaying;
+        shouldAutoplayRef.current = isPlaying || isAutoPlay;
         const t = playlist[i];
         setCurrentTrack(t);
         setNextTrackInfo(playlist[i + 1] || playlist[0]);
         setIndex(i);
-    }, [playlist, isPlaying]);
+    }, [playlist, isPlaying, isAutoPlay]);
 
     const nextTrack = useCallback(() => {
         if (playlist.length === 0) return;
         shouldAutoplayRef.current = isPlaying || isAutoPlay;
-
-        if (index < 0) {
+        console.log(index);
+        if (index < 0) { // failsafe
             playTrackAt(0);
             return;
         }
@@ -164,8 +162,11 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
         if (shouldAutoplayRef.current && waveRef.current) {
             waveRef.current.play();
             shouldAutoplayRef.current = false;
+        } else if (isPlaying && waveRef.current) {
+            waveRef.current.play();
+            shouldAutoplayRef.current = false;
         }
-    }, []);
+    }, [isPlaying]);
 
     // volume
     const setVolume = useCallback((v: number) => { // 0.00 - 1
@@ -177,6 +178,8 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
     // useEffect(() => {
     //     setCurrentVolume(getVolume());
     // }, [currentVolume, getVolume]);
+
+
 
     const value: MediaPlayerContextValue = useMemo(() => ({
         currentTrack, setCurrentTrack,
@@ -194,7 +197,7 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
         setCurrentTrackPosition,
         handlePositionUpdate, currentTrackPosition, setCurrentTrackDuration,
         nextTrackInfo,
-        currentVolume
+        currentVolume, index, setIndex
     }), [
         currentTrack, isPlaying, isPaused, isTrackLooping, isAutoPlay,
         registerPlaylist, registerWave, play, pause, stop, restartTrack,
@@ -202,7 +205,7 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
         setCurrentTrackPosition,
         nextTrack, prevTrack, consumeAutoplay, currentTrackDuration, currentTrackPosition, handlePositionUpdate, setCurrentTrackDuration,
         nextTrackInfo,
-        currentVolume
+        currentVolume, index, setIndex
     ]);
 
     return (

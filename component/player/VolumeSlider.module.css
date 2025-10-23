@@ -1,21 +1,117 @@
-.wrapper {
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    background-image: linear-gradient(rgb(16, 16, 16), black);
-    justify-content: space-between;
-    border-radius: 7px;
-    padding: 1vh .75vw;
-    font-size: clamp(14pt, .5vw + .5rem, 24pt);
-    color: rgba(178, 34, 34, 0.75);
-    font-family: 'DSEG7-Classic', monospace;
-    letter-spacing: 2;
-    width: 250px;
-    height: 45px;
+:root {
+  --accent-start: rgb(146, 255, 255);
+  --accent-end: darkcyan;
+  --track-bg: #2a2a2a;
+  --track-height: 8px;
+  --thumb-size: 18px;
 }
 
+.wrapper {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  background-image: linear-gradient(rgb(16, 16, 16), black);
+  justify-content: space-between;
+  border-radius: var(--lcd-readout-border-radius);
+  padding: 1vh .75vw;
+  font-size: clamp(14pt, .5vw + .5rem, 24pt);
+  color: rgba(178, 34, 34, 0.75);
+  font-family: 'DSEG7-Classic', monospace;
+  letter-spacing: 2;
+  width: 250px;
+  height: var(--lcd-readout-height);
+}
 
-.input[type="range"] {
-  accent-color: rgba(255, 26, 244, 0.5); /* any color you want */
+/* --- Base Slider --- */
+.input {
+  -webkit-appearance: none;
+  appearance: none;
+  height: var(--track-height);
+  padding: 0;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+
+  /* Gradient progress fill */
+  background: linear-gradient(to right,
+      var(--accent-start) 0%,
+      var(--accent-end) 65%) no-repeat;
+  background-size: var(--value-percent, 50%) 100%;
+  background-color: var(--track-bg);
+}
+
+/* Firefox track */
+.input::-moz-range-track {
+  height: var(--track-height);
+  border-radius: 10px;
+  background: var(--track-bg);
+}
+
+/* Firefox progress (the filled portion) */
+.input::-moz-range-progress {
+  height: var(--track-height);
+  border-radius: 10px;
+  background: linear-gradient(to right, var(--accent-start), var(--accent-end));
+}
+
+.input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid #666;
+  background:
+    repeating-linear-gradient(90deg,
+      rgba(255, 255, 255, 0.25) 0px,
+      rgba(255, 255, 255, 0.25) 1px,
+      rgba(0, 0, 0, 0.1) 2px,
+      rgba(0, 0, 0, 0.1) 3px),
+    linear-gradient(135deg, #9a9a9a 0%, #5a5a5a 50%, #bfbfbf 100%);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.4),
+    0 1px 2px rgba(0, 0, 0, 0.4);
+
+  /* 👇 centers thumb vertically on the 6px track */
+  margin-top: calc((var(--thumb-size) - var(--track-height)) / -2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.6),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.6),
+    0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+/* Firefox thumb */
+.input::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid #666;
+  background:
+    repeating-linear-gradient(90deg,
+      rgba(255, 255, 255, 0.25) 0px,
+      rgba(255, 255, 255, 0.25) 1px,
+      rgba(0, 0, 0, 0.1) 2px,
+      rgba(0, 0, 0, 0.1) 3px),
+    linear-gradient(135deg, #d9d9d9 0%, #9a9a9a 50%, #e0e0e0 100%);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.4),
+    0 1px 2px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+/* Provide a track box for WebKit to align against */
+.input::-webkit-slider-runnable-track {
+  height: var(--track-height);
+  background: transparent;
+  /* we paint the track via .input background */
+  border-radius: 10px;
 }

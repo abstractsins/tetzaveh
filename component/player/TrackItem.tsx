@@ -5,12 +5,13 @@ interface Props {
     src: string;
     verse: string;
     wordCount: number;
+    className: string;
     onClick: () => void;
 }
 
-export default function TrackItem({ title, verse, wordCount, onClick }: Props) {
+export default function TrackItem({ title, verse, className, wordCount, onClick }: Props) {
     return (
-        <div className={styles.wrapper} onClick={onClick}>
+        <div className={`${styles.wrapper} ${className ? styles[className] : ''}`} onClick={onClick}>
             <div className={styles.trackTitleVerse}>
                 <h2>{title}</h2>
                 <span>{verse}</span>
