@@ -1,0 +1,25 @@
+.currentTrackMeta {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 350px;
+}
+
+.verse {
+    margin: 4px 0;
+    color: silver;
+
+    font-size: clamp(12pt, .75vw + .25rem, 26pt);
+}
+
+.trackTitle {
+    font-family: var(--eagle-lake);
+    color: white;
+    font-size: clamp(16pt, 1vw + .5rem, 32pt);
+    margin: 4px 0;
+}
+
+
+.credit {
+    color: silver;
+}

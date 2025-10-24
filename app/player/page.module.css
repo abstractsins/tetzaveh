@@ -4,5 +4,5 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: var(--background);
+    background-image: linear-gradient(black, rgb(141, 71, 141), rgb(58, 83, 134));
 }

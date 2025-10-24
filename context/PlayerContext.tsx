@@ -1,8 +1,10 @@
-// TODO
-// * styling for current track in list
-
 'use client';
 
+//* ------------------------------------------------ //
+//* -------------------- IMPORT -------------------- //
+//* ------------------------------------------------ //
+
+// REACT
 import {
     useState,
     ReactNode,
@@ -13,14 +15,31 @@ import {
     createContext, useContext,
 } from 'react';
 
+
+// WAVESURFER
 import type WaveSurfer from 'wavesurfer.js';
-import { MediaPlayerContextValue, TrackFullMeta, Track, Playlist } from '@types';
+
+// TYPES
+import {
+    MediaPlayerContextValue,
+    TrackFullMeta,
+    Track,
+    Playlist
+} from '@types';
+
+
 
 const MediaPlayerContext = createContext<MediaPlayerContextValue | undefined>(undefined);
 
 interface PlayerContextProps {
     children: ReactNode;
 }
+
+
+
+//* ------------------------------------------------ //
+//* -------------------- EXPORT -------------------- //
+//* ------------------------------------------------ //
 
 export function MediaPlayerProvider({ children }: PlayerContextProps) {
     const [currentTrack, setCurrentTrack] = useState<TrackFullMeta | null>(null);
@@ -32,6 +51,8 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
     const [currentTrackDuration, setCurrentTrackDuration] = useState<number | null>(null);
     const [currentTrackPosition, setCurrentTrackPosition] = useState<number>(0.000);
     const [nextTrackInfo, setNextTrackInfo] = useState<Track | null>(null)
+
+    const [playbackRate, setPlaybackRate] = useState<number>(1);
 
     const [playlist, setPlaylist] = useState<TrackFullMeta[]>([]);
     const [index, setIndex] = useState(-1);
@@ -65,7 +86,12 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
 
         ws.on('play', () => { setPlaying(true); setPaused(false); });
         ws.on('pause', () => { setPlaying(false); setPaused(true); });
-    }, []);
+
+        const onReady = () => {
+            ws.setPlaybackRate(playbackRate);
+        };
+        ws.on('ready', onReady);
+    }, [playbackRate]);
 
     // --- transport controls
     const play = useCallback(() => { waveRef.current?.play(); }, []);
@@ -138,6 +164,7 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
         setCurrentTrackPosition(0.000);
     }, []);
 
+
     // finish behavior
     const handleFinish = useCallback(() => {
         if (!waveRef.current) return;
@@ -149,7 +176,13 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
         if (isAutoPlay) nextTrack();
         else seekToZero();
 
-    }, [isTrackLooping, nextTrack, restartTrack, isAutoPlay, seekToZero]);
+    }, [
+        isTrackLooping,
+        nextTrack,
+        restartTrack,
+        isAutoPlay,
+        seekToZero
+    ]);
 
 
     const handlePositionUpdate = useCallback((currentTime: number) => {
@@ -173,11 +206,13 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
         waveRef.current?.setVolume(v);
         setCurrentVolume(v);
     }, []);
+
     const getVolume = useCallback(() => waveRef.current?.getVolume?.() ?? 1, []);
 
-    // useEffect(() => {
-    //     setCurrentVolume(getVolume());
-    // }, [currentVolume, getVolume]);
+    useEffect(() => {
+        if (!waveRef.current) return;
+        waveRef.current?.setPlaybackRate(playbackRate);
+    }, [playbackRate]);
 
 
 
@@ -197,7 +232,7 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
         setCurrentTrackPosition,
         handlePositionUpdate, currentTrackPosition, setCurrentTrackDuration,
         nextTrackInfo,
-        currentVolume, index, setIndex
+        currentVolume, index, setIndex, setPlaybackRate, playbackRate
     }), [
         currentTrack, isPlaying, isPaused, isTrackLooping, isAutoPlay,
         registerPlaylist, registerWave, play, pause, stop, restartTrack,
@@ -205,7 +240,7 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
         setCurrentTrackPosition,
         nextTrack, prevTrack, consumeAutoplay, currentTrackDuration, currentTrackPosition, handlePositionUpdate, setCurrentTrackDuration,
         nextTrackInfo,
-        currentVolume, index, setIndex
+        currentVolume, index, setIndex, setPlaybackRate, playbackRate
     ]);
 
     return (

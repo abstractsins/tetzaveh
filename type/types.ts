@@ -94,6 +94,9 @@ export interface MediaPlayerContextValue {
     index: number;
     setIndex: (i: number) => void;
 
+    playbackRate: number;
+    setPlaybackRate: (x: number) => void;
+
     // TIME
     currentTrackDuration: number | null;
     currentTrackPosition: number | null;

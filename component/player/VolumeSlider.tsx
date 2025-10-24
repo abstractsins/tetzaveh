@@ -35,6 +35,7 @@ export default function VolumeSlider() {
                 defaultValue={85}
                 className={styles.input}
                 onChange={handleChange}
+                title='volume'
             />
             <div className={styles.volumeReadout}>
                 <span>{Math.round(currentVolume * 100)}</span>

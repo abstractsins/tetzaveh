@@ -1,0 +1,11 @@
+.currentTrackOutput {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.waveWrapper {
+    border-radius: 10px;
+    padding: 2vh 1vw;
+    background-image: linear-gradient(rgba(112, 128, 144, 0.5), rgba(112, 128, 144, 0.25), rgba(112, 128, 144, 0.20), rgba(112, 128, 144, 0.10));
+    height: 176px;
+}

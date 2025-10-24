@@ -30,7 +30,7 @@ export default function ControlPanel() {
         setTrackLooping, isTrackLooping,
         setAutoPlay, isAutoPlay,
         play, pause, stop, restartTrack, nextTrack, prevTrack,
-        setVolume, getVolume, seekToZero, setIndex: setCurrentTrackIndex
+        seekToZero, setIndex: setCurrentTrackIndex
     } = useMediaPlayer();
 
 
@@ -70,15 +70,10 @@ export default function ControlPanel() {
             console.error('no track is playing');
         }
         stop();
-
     };
 
-    const handleSkipForward = () => {
-        nextTrack();
-    };
-    const handleSkipBack = () => {
-        prevTrack();
-    };
+    const handleSkipForward = () => { nextTrack(); };
+    const handleSkipBack = () => { prevTrack(); };
 
     const handleLoopTrack = () => setTrackLooping(!isTrackLooping);;
 
@@ -100,7 +95,6 @@ export default function ControlPanel() {
                     action={() => {
                         if (isPlaying) restartTrack();
                         else seekToZero();
-
                     }}
                     Icon={ArrowLeftToLine}
                     disabled={!currentTrack}
@@ -127,7 +121,6 @@ export default function ControlPanel() {
                     className={'stop'}
                     action={handleStop} Icon={SquareStopIcon}
                     disabled={!currentTrack}
-
                 />
 
                 <Button

@@ -1,0 +1,15 @@
+.timeReadouts {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(rgb(16, 16, 16), black);
+    justify-content: flex-end;
+    border-radius: var(--lcd-readout-border-radius);
+    padding: 1vh .5vw;
+    font-size: clamp(14pt, .5vw + .5rem, 24pt);
+    color: rgba(178, 34, 34, 0.75);
+    font-family: 'DSEG7-Classic', monospace;
+    letter-spacing: 2;
+    width: 250px;
+    height: var(--lcd-readout-height);
+}

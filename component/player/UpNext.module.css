@@ -1,0 +1,16 @@
+.upNext {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.upNextLabel {
+    font-style: italic;
+    color: silver;
+
+}
+
+.upNextValue {
+    color: silver;
+    font-size: clamp(12pt, .75vw, 18pt);
+}
