@@ -64,3 +64,10 @@
     align-items: flex-end;
     height: 80px;
 }
+
+@media (max-width: 1550PX) {
+    .wrapper {
+        width: clamp(300px, 95vw, 1530px);
+        height: clamp(150px, 40vh, 350px);
+    }
+}

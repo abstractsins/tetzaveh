@@ -51,12 +51,6 @@
     margin-bottom: 2vh;
   }
 
-  @media (prefers-color-scheme: dark) {
-    html {
-      color-scheme: dark;
-    }
-  }
-
   * {
     /* border: 1px solid red; */
   }

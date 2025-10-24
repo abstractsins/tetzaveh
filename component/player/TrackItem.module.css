@@ -47,3 +47,19 @@
     /* optional subtle animation */
     /* transition: box-shadow 0.3s ease, border-color 0.3s ease; */
 }
+
+@media (max-width: 1550PX) {
+    .wrapper {
+        width: clamp(200px, 20vw, 275px);
+        /* height: clamp(150px, 40vh, 350px); */
+    }
+
+    .wordCountValue {
+        font-size: clamp(10pt, 1vw + .25rem, 14pt);
+    }
+
+    .trackTitleVerse h2 {
+        font-size: clamp(16pt, 1vw, 22pt);
+    }
+
+}
