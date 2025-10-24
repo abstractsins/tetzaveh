@@ -1,0 +1,22 @@
+.wrapper {
+    background-image: linear-gradient(rgba(12, 13, 18, 0.75), rgba(12, 13, 18, 0.75), rgb(0, 0, 0));
+    display: flex;
+    border: 1px solid var(--foreground);
+    border-radius: var(--radius-main);
+    width: clamp(300px, 80vw, 1600px);
+    height: clamp(150px, 55vh, 800px);
+    margin-top: 4vh;
+    padding: 2vh 1vw;
+    overflow-y: scroll;
+}
+
+.wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+@media (max-width: 1550PX) {
+    .wrapper {
+        width: clamp(300px, 95vw, 1530px);
+        height: clamp(150px, 100%, 100vh);
+    }
+}

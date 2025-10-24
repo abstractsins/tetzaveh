@@ -1,0 +1,26 @@
+.wrapper {
+    margin: .5vh 0vw;
+    overflow: scroll;
+    width: fit-content;
+    padding: 2vh 1vw;
+}
+
+.wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.header {
+    margin-bottom: 2vh;
+}
+
+.header span {
+    font-family: var(--barlow-semi-condensed);
+    text-transform: uppercase;
+    color: silver;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}

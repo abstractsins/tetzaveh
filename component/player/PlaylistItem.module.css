@@ -1,0 +1,22 @@
+.wrapper {
+    border-radius: 10px;
+    min-height: 5vh;
+    width: 100%;
+    border: 1px solid transparent;
+    transition: all 200ms;
+    padding: 1vh .5vw;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.body {
+    display: flex;
+}
+
+.wrapper:hover {
+    background-color: rgba(0, 0, 0, 0.35);
+    /* border: 1px solid gold; */
+    box-shadow: 0 0 10px 2px rgba(255, 217, 0, 0.75);
+    cursor: pointer;
+}

@@ -45,7 +45,8 @@ export default function TrackList() {
                             setCurrentTrack(track);
                             playTrackAt(i);
                         }}
-                    >                        <TrackItem
+                    >
+                        <TrackItem
                             onClick={() => {
                                 registerPlaylist(Tetzaveh2Clips);
                                 setCurrentTrack(track);
