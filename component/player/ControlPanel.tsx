@@ -22,9 +22,8 @@ import Button from './Button';
 export default function ControlPanel() {
 
     const {
-        registerPlaylist,
-        currentTrack,
-        setCurrentTrack,
+        currentTrack, setCurrentTrack,
+        registerPlaylist, setCurrentPlaylist,
         isPlaying, isPaused,
         setPlaying, setPaused,
         setTrackLooping, isTrackLooping,
@@ -61,11 +60,13 @@ export default function ControlPanel() {
     };
 
     const handleStop = () => {
+        console.log(currentTrack);
         if (currentTrack) {
             setPaused(false);
             setPlaying(false);
             setCurrentTrack(null);
             setCurrentTrackIndex(-1);
+            setCurrentPlaylist(undefined);
         } else {
             console.error('no track is playing');
         }

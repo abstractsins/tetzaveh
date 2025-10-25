@@ -41,6 +41,7 @@
   position: relative;
   width: calc(100% / 5); /* 5 stops */
   user-select: none;
+  color: gray;
 }
 
 /* Label text under each dot */
@@ -80,6 +81,9 @@
   transform: translate(-50%, -50%) scale(1.25);
 }
 
+.playbackSpeedSlider .normalRate {
+}
+
 /* Hide the native radios */
 .playbackSpeedSlider input {
   display: none;
@@ -88,10 +92,11 @@
 /* Selected: bold label + inner dot (not full fill) */
 .playbackSpeedSlider input:checked + label::before {
   font-weight: 800;
-  font-size: large;
+  font-size: 12pt;
   display: flex;
   align-items: center;
   opacity: 1;
+  color: silver;
 }
 
 .playbackSpeedSlider input:checked + label::after {

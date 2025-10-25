@@ -8,10 +8,10 @@ import { Playlist } from '@/type/types';
 export default function PlaylistSelect() {
 
 
-    const { registerPlaylist } = useMediaPlayer();
+    const { registerPlaylist, currentPlaylist } = useMediaPlayer();
 
-    const handlePlaylistSelect = (p: Playlist) => {
-        registerPlaylist(p);
+    const handlePlaylistSelect = (playlist: Playlist) => {
+        registerPlaylist(playlist);
     };
 
 
@@ -26,6 +26,8 @@ export default function PlaylistSelect() {
                     <PlaylistItem
                         key={i}
                         title={p.title}
+                        numTracks={p.tracks.length}
+                        className={`${currentPlaylist?.id === p.id ? 'playing' : ''}`}
                         onClick={() => handlePlaylistSelect(p)}
                     />)
                 }

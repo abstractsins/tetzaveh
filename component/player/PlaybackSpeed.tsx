@@ -35,6 +35,7 @@ export default function PlaybackSpeed({ value, onChange }: Props) {
                             htmlFor={id}
                             data-speed-label={`${rate === 1 ? 'Normal' : rate + 'x'}`}
                             title={`${rate === 1 ? 'Normal' : rate + 'x'}`}
+                            className={`${rate === 1 ? styles.normalRate : ''}`}
                         />
                     ];
                 })}

@@ -42,14 +42,18 @@ export interface TrackFullMeta extends Track {
 }
 
 export interface Playlist {
+    id: string;
     title: string;
-    tracks: Track[];
+    tracks: TrackFullMeta[];
     notes?: string;
 }
 
 export interface MediaPlayerContextValue {
     currentTrack: TrackFullMeta | null;
     setCurrentTrack: (t: Track | null) => void;
+
+    currentPlaylist: Playlist | undefined; 
+    setCurrentPlaylist: (p: Playlist | undefined) => void;
 
     nextTrackInfo: Track | null;
 

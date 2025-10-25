@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 3px solid lightgray;
+    border: 3px solid rgba(211, 211, 211, 0.75);
     border-radius: var(--radius-main);
     width: clamp(300px, 80vw, 1600px);
     height: clamp(150px, 33vh, 350px);

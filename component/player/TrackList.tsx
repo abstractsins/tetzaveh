@@ -6,14 +6,13 @@ import styles from './TrackList.module.css';
 
 export default function TrackList() {
     const {
-        registerPlaylist,
-        currentTrack,
+        currentPlaylist,
         playTrackAt,
         setCurrentTrack,
         index: currentTrackIndex
     } = useMediaPlayer();
 
-    const tracks = Tetzaveh2Clips.tracks;
+    const tracks = currentPlaylist?.tracks;
 
     // create a ref array for all track items
     const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -36,20 +35,15 @@ export default function TrackList() {
     return (
         <div className={styles.wrapper}>
             <div className={styles.body}>
-                {tracks.map((track, i) => (
+                {tracks?.map((track, i) => (
                     <div
                         key={track.src || `${track.title}|${track.verse}`}
                         ref={el => setItemRef(el, i)}
-                        onClick={() => {
-                            registerPlaylist(Tetzaveh2Clips);
-                            setCurrentTrack(track);
-                            playTrackAt(i);
-                        }}
                     >
                         <TrackItem
                             onClick={() => {
-                                registerPlaylist(Tetzaveh2Clips);
                                 setCurrentTrack(track);
+                                playTrackAt(i);
                             }}
                             key={`Tetzaveh-2-${i}`}
                             title={track.title}

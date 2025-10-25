@@ -12,12 +12,8 @@
 
 .wrapper:hover {
     cursor: pointer;
-    /* border-color: gold; */
-    box-shadow: 0 0 10px 2px rgba(255, 217, 0, 0.75);
-}
-
-.wrapper.playing {
-    border-color: greenyellow;
+    border-color: var(--hover-item-border-color);
+    box-shadow: var(--hover-item-box-shadow);
 }
 
 .trackTitleVerse {
@@ -33,6 +29,7 @@
 }
 
 .wordCountLabel {
+    font-family: var(--barlow-semi-condensed);
     text-transform: uppercase;
     color: darkgray;
 }
@@ -42,8 +39,8 @@
 }
 
 .wrapper.playing {
-    border-color: lightgreen;
-    box-shadow: 0 0 10px 2px rgba(144, 238, 144, .75);
+    border-color: var(--playing-border-color);
+    box-shadow: var(--playing-box-shadow);
     /* optional subtle animation */
     /* transition: box-shadow 0.3s ease, border-color 0.3s ease; */
 }

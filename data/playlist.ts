@@ -125,28 +125,34 @@ const z1: Track = {
 }
 
 const z2: Track = {
-    title: 'Zachor 1',
+    title: 'Zachor 2',
     src: 'zachor-2.wav',
     verse: 'Deuteronomy 25:18',
     wordCount: 13
 }
 
 const z3: Track = {
-    title: 'Zachor 1',
+    title: 'Zachor 3',
     src: 'zachor-3.wav',
     verse: 'Deuteronomy 25:19',
     wordCount: 21
 }
 
-const applyCredit = (track: Track): TrackFullMeta => {
+const applyCreditTetzaveh = (track: Track): TrackFullMeta => {
     const credit = 'The Bayit, Hebrew Institute of Riverdale';
     const creditUrl = 'https://www.thebayit.org/tetzaveh#';
     return { ...track, credit, creditUrl };
 }
 
+const applyCreditZachor = (track: Track): TrackFullMeta => {
+    const credit = 'The Bayit, Hebrew Institute of Riverdale';
+    const creditUrl = 'https://www.thebayit.org/kiteitzei#';
+    return { ...track, credit, creditUrl };
+}
 
 // * ASSEMBLED PLAYLIST
 export const Tetzaveh2Clips: Playlist = {
+    id: 'P-1',
     title: 'Tetzaveh, 2nd Aliyah',
     tracks: [
         t2v1, t2v2, t2v3,
@@ -155,15 +161,16 @@ export const Tetzaveh2Clips: Playlist = {
         t2v10, t2v11, t2v12,
         t2v13, t2v14, t2v15,
         t2v16, t2v17, t2v18
-    ].map(applyCredit),
+    ].map(applyCreditTetzaveh),
     notes: 'Exodus 28:13-30'
 }
 
 export const ZachorClips: Playlist = {
+    id: 'P-2',
     title: 'Zachor, Maftir',
     tracks: [
         z1, z2, z3
-    ].map(applyCredit),
+    ].map(applyCreditZachor),
     notes: 'Deuteronomy 25:17-19'
 }
 
