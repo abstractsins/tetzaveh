@@ -15,11 +15,12 @@
   justify-content: space-between;
   border-radius: var(--lcd-readout-border-radius);
   padding: 1vh .75vw;
-  font-size: clamp(14pt, .5vw + .5rem, 24pt);
+  /* font-size: clamp(14pt, .5vw + .5rem, 18pt); */
+  font-size: var(--lcd-font-size);
   color: rgba(178, 34, 34, 0.75);
   font-family: 'DSEG7-Classic', monospace;
   letter-spacing: 2;
-  width: 250px;
+  width: var(--width-LCD);
   height: var(--lcd-readout-height);
 }
 
@@ -28,6 +29,7 @@
   -webkit-appearance: none;
   appearance: none;
   height: var(--track-height);
+  width: clamp(50px, 7.5vw + 40px, 182px);
   padding: 0;
   border-radius: 10px;
   outline: none;
@@ -114,4 +116,14 @@
   background: transparent;
   /* we paint the track via .input background */
   border-radius: 10px;
+}
+
+@media (max-width: 1500PX) {
+  .input {
+    width: clamp(50px, 8.5vw, 200px);
+  }
+
+  .wrapper {
+    height: var(--lcd-readout-height-1250);
+  }
 }

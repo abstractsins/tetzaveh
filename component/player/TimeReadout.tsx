@@ -10,12 +10,15 @@ export default function TimeReadout() {
     } = useMediaPlayer()
 
     return (
-        <div className={styles.timeReadouts}>
-            {currentTrack && (
-                <span>
+        <div className={styles.wrapper}>
+            {currentTrack 
+                ? (<span>
                     {currentTrackPosition?.toFixed(3)} : {currentTrackDuration?.toFixed(3)}
-                </span>
-            )}
+                </span>)
+                : (<span>
+                    0.000 : 0.000
+                </span>)
+            }
         </div>
     );
 }

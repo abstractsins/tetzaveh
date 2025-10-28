@@ -3,7 +3,7 @@
     display: flex;
     border: 1px solid var(--foreground);
     border-radius: var(--radius-main);
-    width: clamp(300px, 80vw, 1600px);
+    width: var(--width-main-full);
     height: clamp(150px, 55vh, 800px);
     margin-top: 4vh;
     padding: 2vh 1vw;
@@ -14,9 +14,15 @@
     display: none;
 }
 
-@media (max-width: 1550PX) {
+
+@media (max-width: 1800PX) {
     .wrapper {
-        width: clamp(300px, 95vw, 1530px);
-        height: clamp(150px, 100%, 100vh);
+        width: var(--width-main-1800);
+    }
+}
+
+@media (max-width: 1500PX) {
+    .wrapper {
+        width: var(--width-main-1500);
     }
 }

@@ -1,8 +1,3 @@
-:root {
-    --lcd-readout-height: 50px;
-    --lcd-readout-border-radius: 7px;
-}
-
 .wrapper {
     background-image: linear-gradient(rgb(30, 30, 30), rgb(10, 10, 10), black, black);
     display: flex;
@@ -10,7 +5,7 @@
     justify-content: center;
     border: 3px solid rgba(211, 211, 211, 0.75);
     border-radius: var(--radius-main);
-    width: clamp(300px, 80vw, 1600px);
+    width: var(--width-main-full);
     height: clamp(150px, 33vh, 350px);
 }
 
@@ -65,9 +60,19 @@
     height: 80px;
 }
 
-@media (max-width: 1550PX) {
+@media (max-width: 1800PX) {
     .wrapper {
-        width: clamp(300px, 95vw, 1530px);
-        height: clamp(150px, 40vh, 350px);
+        width: var(--width-main-1800);
+    }
+}
+
+
+@media (max-width: 1500PX) {
+    .wrapper {
+        width: var(--width-main-1500);
+    }
+
+    .leftSide {
+        width: 27%;
     }
 }

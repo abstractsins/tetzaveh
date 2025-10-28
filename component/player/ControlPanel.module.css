@@ -4,9 +4,19 @@
     padding: 1vh .5vw;
     border-radius: var(--lcd-readout-border-radius);
     height: 50px;
+    display: flex;
+    align-items: center;
 }
 
 .body {
     display: flex;
     gap: 5px;
+}
+
+
+@media (max-width: 1500PX) {
+  .wrapper {
+    height: var(--lcd-readout-height-1250);
+  }
+
 }

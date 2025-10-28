@@ -45,7 +45,7 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
     const [currentTrack, setCurrentTrack] = useState<TrackFullMeta | null>(null);
     const [currentPlaylist, setCurrentPlaylist] = useState<Playlist>();
 
-    const [currentTrackDuration, setCurrentTrackDuration] = useState<number | null>(null);
+    const [currentTrackDuration, setCurrentTrackDuration] = useState<number | null>(0.000);
     const [currentTrackPosition, setCurrentTrackPosition] = useState<number>(0.000);
 
     const [isPlaying, setPlaying] = useState(false);

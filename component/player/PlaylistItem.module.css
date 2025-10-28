@@ -43,5 +43,5 @@
 }
 
 .numTracksValue {
-    font-size: clamp(9pt, 1.5vw + .25rem, 14pt);
+    font-size: clamp(9pt, 1.25vw + .25rem, 14pt);
 }

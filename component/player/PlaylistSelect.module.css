@@ -1,7 +1,7 @@
 .wrapper {
     margin: .5vh 0vw;
     overflow: scroll;
-    width: clamp(150px, 15vw, 350px);
+    width: clamp(150px, 25vw, 350px);
     padding: 2vh 1vw;
     background-color: rgba(0, 0, 0, 0.356);
     border-radius: var(--radius-main);

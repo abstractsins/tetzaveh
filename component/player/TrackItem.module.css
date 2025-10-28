@@ -19,6 +19,7 @@
 .trackTitleVerse {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .wordCountWrapper {
@@ -59,4 +60,21 @@
         font-size: clamp(16pt, 1vw, 22pt);
     }
 
+}
+
+
+@media (max-width: 1100PX) {
+    .trackTitleVerse h2 {
+        font-size: clamp(8pt, 1.25vw + .25rem, 16pt);
+    }
+
+    .trackTitleVerse span {
+        font-size: clamp(6pt, 1.25vw, 14pt);
+    }
+}
+
+@media (max-width: 900PX) {
+    .wrapper {
+        width: clamp(175px, 10vw, 600px);
+    }
 }

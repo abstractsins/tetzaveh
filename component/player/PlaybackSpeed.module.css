@@ -1,7 +1,7 @@
 .wrapper {
-    display: flex;
-    /* align-items: center; */
-    height: 100%;
+  display: flex;
+  /* align-items: center; */
+  height: 100%;
 }
 
 /* Slider container */
@@ -10,8 +10,7 @@
   flex-direction: row;
   align-content: stretch;
   position: relative;
-  width: 500px;
-  /* height: 60px; */
+  width: clamp(300px, 25vw, 500px);
   user-select: none;
 }
 
@@ -20,7 +19,8 @@
   content: "";
   position: absolute;
   height: 2px;
-  width: calc(100% * (4 / 5)); /* (stops-1)/stops with 5 stops */
+  width: calc(100% * (4 / 5));
+  /* (stops-1)/stops with 5 stops */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -39,7 +39,8 @@
 /* Each stop */
 .playbackSpeedSlider label {
   position: relative;
-  width: calc(100% / 5); /* 5 stops */
+  width: calc(100% / 5);
+  /* 5 stops */
   user-select: none;
   color: gray;
 }
@@ -69,7 +70,8 @@
   width: 10px;
   height: 10px;
   border: 2px solid var(--accent, rgba(178, 34, 34, 0.75));
-  background: #000;               /* hollow look on dark theme */
+  background: #000;
+  /* hollow look on dark theme */
   border-radius: 50%;
   pointer-events: none;
   z-index: 1;
@@ -81,8 +83,7 @@
   transform: translate(-50%, -50%) scale(1.25);
 }
 
-.playbackSpeedSlider .normalRate {
-}
+.playbackSpeedSlider .normalRate {}
 
 /* Hide the native radios */
 .playbackSpeedSlider input {
@@ -90,7 +91,7 @@
 }
 
 /* Selected: bold label + inner dot (not full fill) */
-.playbackSpeedSlider input:checked + label::before {
+.playbackSpeedSlider input:checked+label::before {
   font-weight: 800;
   font-size: 12pt;
   display: flex;
@@ -99,10 +100,11 @@
   color: silver;
 }
 
-.playbackSpeedSlider input:checked + label::after {
+.playbackSpeedSlider input:checked+label::after {
   /* 6px inner-dot radius; tweak as you like */
   background: radial-gradient(circle at 50% 50%, var(--accent, firebrick) 0 6px, #000 7px);
-  border-width: 2px;                     /* ring thickness */
+  border-width: 2px;
+  /* ring thickness */
   transform: translate(-50%, -50%) scale(.75);
 }
 
@@ -123,16 +125,39 @@
 }
 
 /* Show the pos dot when any radio is checked */
-.playbackSpeedSlider input:checked ~ .pos {
+.playbackSpeedSlider input:checked~.pos {
   opacity: 1;
 }
 
 /* Place the pos dot for each selected radio (inputs are 1,3,5,... among siblings) */
-.playbackSpeedSlider input:checked:nth-child(1)  ~ .pos { left: calc((100% / 5) * 1 - (100% / 5) / 2); }
-.playbackSpeedSlider input:checked:nth-child(3)  ~ .pos { left: calc((100% / 5) * 2 - (100% / 5) / 2); }
-.playbackSpeedSlider input:checked:nth-child(5)  ~ .pos { left: calc((100% / 5) * 3 - (100% / 5) / 2); }
-.playbackSpeedSlider input:checked:nth-child(7)  ~ .pos { left: calc((100% / 5) * 4 - (100% / 5) / 2); }
-.playbackSpeedSlider input:checked:nth-child(9)  ~ .pos { left: calc((100% / 5) * 5 - (100% / 5) / 2); }
-.playbackSpeedSlider input:checked:nth-child(11) ~ .pos { left: calc((100% / 5) * 6 - (100% / 5) / 2); }
-.playbackSpeedSlider input:checked:nth-child(13) ~ .pos { left: calc((100% / 5) * 7 - (100% / 5) / 2); }
-.playbackSpeedSlider input:checked:nth-child(15) ~ .pos { left: calc((100% / 5) * 8 - (100% / 5) / 2); }
+.playbackSpeedSlider input:checked:nth-child(1)~.pos {
+  left: calc((100% / 5) * 1 - (100% / 5) / 2);
+}
+
+.playbackSpeedSlider input:checked:nth-child(3)~.pos {
+  left: calc((100% / 5) * 2 - (100% / 5) / 2);
+}
+
+.playbackSpeedSlider input:checked:nth-child(5)~.pos {
+  left: calc((100% / 5) * 3 - (100% / 5) / 2);
+}
+
+.playbackSpeedSlider input:checked:nth-child(7)~.pos {
+  left: calc((100% / 5) * 4 - (100% / 5) / 2);
+}
+
+.playbackSpeedSlider input:checked:nth-child(9)~.pos {
+  left: calc((100% / 5) * 5 - (100% / 5) / 2);
+}
+
+.playbackSpeedSlider input:checked:nth-child(11)~.pos {
+  left: calc((100% / 5) * 6 - (100% / 5) / 2);
+}
+
+.playbackSpeedSlider input:checked:nth-child(13)~.pos {
+  left: calc((100% / 5) * 7 - (100% / 5) / 2);
+}
+
+.playbackSpeedSlider input:checked:nth-child(15)~.pos {
+  left: calc((100% / 5) * 8 - (100% / 5) / 2);
+}

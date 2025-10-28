@@ -9,3 +9,10 @@
     background-image: linear-gradient(rgba(112, 128, 144, 0.5), rgba(112, 128, 144, 0.25), rgba(112, 128, 144, 0.20), rgba(112, 128, 144, 0.10));
     height: 176px;
 }
+
+
+@media (max-width: 1500PX) {
+    .currentTrackOutput {
+        /* max-width: 900px; */
+    }
+}

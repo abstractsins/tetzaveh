@@ -40,3 +40,15 @@
 .nextTrack {
     color: cyan;
 }
+
+
+@media (max-width: 1500PX) {
+  .wrapper {
+    font-size: var(--lcd-font-size);
+    padding: 0vh .5vw;
+  }
+
+  .wrapper svg {
+    width:  var(--lcd-font-size);
+  }
+}

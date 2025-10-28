@@ -1,4 +1,4 @@
-.timeReadouts {
+.wrapper {
     border: 1px solid rgba(255, 255, 255, 0.25);
     display: flex;
     align-items: center;
@@ -6,10 +6,18 @@
     justify-content: flex-end;
     border-radius: var(--lcd-readout-border-radius);
     padding: 1vh .5vw;
-    font-size: clamp(14pt, .5vw + .5rem, 24pt);
     color: rgba(178, 34, 34, 0.75);
     font-family: 'DSEG7-Classic', monospace;
+    
+    width: var(--width-LCD);
+    
     letter-spacing: 2;
-    width: 250px;
+    font-size: var(--lcd-font-size);
     height: var(--lcd-readout-height);
+}
+
+@media (max-width: 1500PX) {
+  .wrapper {
+    height: var(--lcd-readout-height-1250);
+  }
 }

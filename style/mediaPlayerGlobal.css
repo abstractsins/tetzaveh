@@ -4,12 +4,22 @@
   --background-2: rgb(200, 200, 200);
   --background-3: rgb(200, 200, 200);
 
-  /** BORDER RADIUS */
+  /** MAIN COMPONENTS */
   --radius-main: 20px;
+  --width-main-full: clamp(300px, 80vw, 1600px);
+  --width-main-1800: clamp(300px, 90vw, 1600px);
+  --width-main-1500: clamp(300px, 95vw, 1600px);
+
+  /** MINOR COMPONENTS */
+  --width-LCD: clamp(100px, 14vw + 20px, 280px);
+  --lcd-readout-height: 50px;
+  --lcd-readout-height-1250: clamp(35px, .75vw, 45px);
+  --lcd-readout-border-radius: 7px;
+  --lcd-font-size: clamp(8pt, 1.25vw, 18pt);
 
   /** CURRENTLY PLAYING */
   --playing-border-color: lightgreen;
-  --playing-box-shadow: 0 0 10px 2px rgba(144, 238, 144, .75);
+  --playing-box-shadow: 0 0 10px 2px rgba(144, 238, 144, 0.75);
 
   /** HOVER SELECTION */
   --hover-item-border-color: gold;
