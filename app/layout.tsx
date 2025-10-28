@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { Analytics } from "@vercel/analytics/next"
+
 import "@style/globals.css";
 import "@style/mediaPlayerGlobal.css";
 
@@ -10,7 +12,7 @@ import {
   Geist_Mono,
   Barlow_Semi_Condensed,
   Eagle_Lake
-} from "next/font/google"; 
+} from "next/font/google";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,6 +57,7 @@ export default function RootLayout({
     >
       <body>
         {children}
+        <Analytics />
       </body>
     </html >
   );

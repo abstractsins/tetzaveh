@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.5.0",
     "@wavesurfer/react": "^1.0.11",
     "dseg": "^0.46.0",
     "lucide-react": "^0.546.0",
