@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -11,7 +15,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -19,14 +23,36 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@comp/*": ["./component/*"],
-      "@style/*": ["./style/*"],
-      "@types": ["./type/types.ts"],
-      "@utils": ["./utils/utils.ts"],
-      "@audio/*": ["./public/audio/*"]
+      "@/*": [
+        "./*"
+      ],
+      "@comp/*": [
+        "./component/*"
+      ],
+      "@style/*": [
+        "./style/*"
+      ],
+      "@types": [
+        "./type/types.ts"
+      ],
+      "@utils": [
+        "./utils/utils.ts"
+      ],
+      "@audio/*": [
+        "./public/audio/*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/page.tsx.old", "app/player/layout.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/page.tsx.old",
+    "app/player/layout.tsx",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
