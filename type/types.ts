@@ -112,4 +112,15 @@ export interface MediaPlayerContextValue {
   setCurrentTrackPosition: (pos: number) => void;
   handlePositionUpdate: (pos: number) => void;
   setCurrentTrackDuration: (n: number) => void;
+
+  // LOOP POINTS
+  isSelectingLoop: boolean;
+  setIsSelectingLoop: React.Dispatch<React.SetStateAction<boolean>>;
+  loopStartTrack: Track | null;
+  setLoopStartTrack: React.Dispatch<React.SetStateAction<Track | null>>;
+  loopEndTrack: Track | null;
+  setLoopEndTrack: React.Dispatch<React.SetStateAction<Track | null>>;
+  setLoopPointsSet: React.Dispatch<React.SetStateAction<boolean>>;
+  loopPointsSet: boolean;
+  clearLoopPoints: () => void;
 }

@@ -50,6 +50,11 @@
   /* transition: box-shadow 0.3s ease, border-color 0.3s ease; */
 }
 
+.wrapper.looping {
+  border-color: var(--loop-point-border-color);
+  box-shadow: var(--loop-point-box-shadow);
+}
+
 @media (max-width: 1550px) {
   .wrapper {
     width: clamp(200px, 20vw, 275px);

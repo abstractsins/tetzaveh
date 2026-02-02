@@ -14,6 +14,7 @@ import {
   useEffect,
   createContext,
   useContext,
+  use,
 } from "react";
 
 // WAVESURFER
@@ -60,6 +61,35 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
   const [currentVolume, setCurrentVolume] = useState<number>(0.85);
 
   const [index, setIndex] = useState(-1);
+
+  // LOOP POINTS
+  const [isSelectingLoop, setIsSelectingLoop] = useState<boolean>(false);
+  const [loopStartTrack, setLoopStartTrack] = useState<Track | null>(null);
+  const [loopEndTrack, setLoopEndTrack] = useState<Track | null>(null);
+  const [loopPointsSet, setLoopPointsSet] = useState<boolean>(false);
+
+  const clearLoopPoints = useCallback(() => {
+    setLoopStartTrack(null);
+    setLoopEndTrack(null);
+    setIsSelectingLoop(false);
+    setLoopPointsSet(false);
+    console.log("Loop points cleared");
+  }, []);
+
+  useEffect(() => {
+    console.log("Selecting loop:", isSelectingLoop);
+  }, [isSelectingLoop]);
+
+  useEffect(() => {
+    console.log("Loop points set:", loopPointsSet);
+    console.log({
+      start: loopStartTrack?.title,
+      end: loopEndTrack?.title,
+    });
+    // calculate the looping segment for class highlighting in TrackList
+
+    // actually loop the tracks
+  }, [loopPointsSet]);
 
   // identify a track uniquely
   const keyOf = (t: TrackFullMeta | null) =>
@@ -139,6 +169,7 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
   const registerPlaylist = useCallback(
     (playlist: Playlist | null) => {
       if (playlist) {
+        clearLoopPoints();
         setCurrentPlaylist(playlist);
         if (!currentTrack && playlist.tracks.length > 0) {
           setCurrentTrack(playlist.tracks[0]);
@@ -247,8 +278,10 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
   }, [playbackRate]);
 
   useEffect(() => {
-    if (!currentPlaylist) return;
-    console.log(currentPlaylist.tracks);
+    if (!currentPlaylist) {
+      clearLoopPoints();
+      return;
+    }
     setCurrentTrack(currentPlaylist?.tracks[0]);
   }, [currentPlaylist]);
 
@@ -292,6 +325,15 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
       setIndex,
       setPlaybackRate,
       playbackRate,
+      loopStartTrack,
+      setLoopStartTrack,
+      loopEndTrack,
+      setLoopEndTrack,
+      clearLoopPoints,
+      isSelectingLoop,
+      setIsSelectingLoop,
+      loopPointsSet,
+      setLoopPointsSet,
     }),
     [
       currentTrack,
@@ -326,6 +368,13 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
       setIndex,
       setPlaybackRate,
       playbackRate,
+      loopStartTrack,
+      loopEndTrack,
+      clearLoopPoints,
+      isSelectingLoop,
+      setIsSelectingLoop,
+      loopPointsSet,
+      setLoopPointsSet,
     ],
   );
 

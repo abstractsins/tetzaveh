@@ -1,13 +1,40 @@
 import styles from "./LibraryControls.module.css";
 
+import { useMediaPlayer } from "@/context/PlayerContext";
+
 const renderLoopControls = () => {
+  const {
+    isSelectingLoop,
+    setIsSelectingLoop,
+    setLoopStartTrack,
+    setLoopEndTrack,
+    clearLoopPoints,
+    currentPlaylist,
+    loopPointsSet,
+  } = useMediaPlayer();
+
   return (
     <>
       {/* Placeholder for loop control buttons */}
-      <ul>
-        <li key={1}>Set Loop Start</li>
-        <li key={2}>Set Loop End</li>
-        <li key={3}>Clear Loop</li>
+      <ul className={styles.loopControlsList}>
+        <li
+          key={1}
+          className={`${styles.loopControlListItem} ${isSelectingLoop ? styles.loopSelectionActive : ""}`}
+          onClick={() => setIsSelectingLoop(true)}
+          aria-disabled={!currentPlaylist}
+        >
+          Select Points
+        </li>
+        <li
+          key={2}
+          className={`${styles.loopControlListItem} ${isSelectingLoop ? styles.loopSelectionActive : ""}`}
+          onClick={clearLoopPoints}
+          aria-disabled={
+            !currentPlaylist || (!isSelectingLoop && !loopPointsSet)
+          }
+        >
+          Clear
+        </li>
       </ul>
     </>
   );
@@ -31,4 +58,5 @@ export default function LoopControlsModule() {
 // if loop points are set while paused, nothing will happen until playback is started.
 // if loop points are cleared while playing, playback continues normally.
 // if loop points are cleared while paused, nothing will happen until playback is started.
+// changing playlists while loop points are set will clear the loop points.
 // any tracks within the loop get a blue highlight in the track list, but still are green when playing and yellow when hovered.

@@ -3,6 +3,7 @@ import { Tetzaveh2Clips } from "@/data/playlist";
 import { useMediaPlayer } from "@/context/PlayerContext";
 import TrackItem from "./TrackItem";
 import styles from "./TrackList.module.css";
+import { Track } from "@/type/types";
 
 export default function TrackList() {
   const {
@@ -10,6 +11,13 @@ export default function TrackList() {
     playTrackAt,
     setCurrentTrack,
     index: currentTrackIndex,
+    isSelectingLoop,
+    loopStartTrack,
+    setIsSelectingLoop,
+    setLoopPointsSet,
+    setLoopStartTrack,
+    loopEndTrack,
+    setLoopEndTrack,
   } = useMediaPlayer();
 
   const tracks = currentPlaylist?.tracks;
@@ -19,6 +27,34 @@ export default function TrackList() {
 
   const setItemRef = (el: HTMLDivElement | null, index: number) => {
     itemRefs.current[index] = el;
+  };
+
+  const configureLoopPoints = (track: Track, i: number) => {
+    if (loopStartTrack && !loopEndTrack) {
+      // if setting an end point before the start point, swap them
+      if (i < tracks!.indexOf(loopStartTrack)) {
+        setLoopEndTrack(loopStartTrack);
+        setLoopStartTrack(track);
+      } else {
+        setLoopEndTrack(track);
+      }
+    }
+    // exit loop selection mode after setting both points
+    setIsSelectingLoop(false);
+    setLoopPointsSet(true);
+  };
+
+  const handleClickTrack = (track: Track, i: number) => {
+    if (isSelectingLoop) {
+      if (!loopStartTrack) {
+        setLoopStartTrack(track);
+      } else {
+        configureLoopPoints(track, i);
+      }
+    } else {
+      setCurrentTrack(track);
+      playTrackAt(i);
+    }
   };
 
   // scroll current track into view when index changes
@@ -41,10 +77,7 @@ export default function TrackList() {
             ref={(el) => setItemRef(el, i)}
           >
             <TrackItem
-              onClick={() => {
-                setCurrentTrack(track);
-                playTrackAt(i);
-              }}
+              onClick={() => handleClickTrack(track, i)}
               key={`Tetzaveh-2-${i}`}
               title={track.title}
               src={track.src}
