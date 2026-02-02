@@ -1,22 +1,22 @@
 .wrapper {
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    display: flex;
-    align-items: center;
-    background-image: linear-gradient(rgb(16, 16, 16), black);
-    justify-content: flex-end;
-    border-radius: var(--lcd-readout-border-radius);
-    padding: 1vh .5vw;
-    color: rgba(178, 34, 34, 0.75);
-    font-family: 'DSEG7-Classic', monospace;
-    
-    width: var(--width-LCD);
-    
-    letter-spacing: 2;
-    font-size: var(--lcd-font-size);
-    height: var(--lcd-readout-height);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(rgb(16, 16, 16), black);
+  justify-content: flex-end;
+  border-radius: var(--lcd-readout-border-radius);
+  padding: 1vh 0.5vw;
+  color: rgba(178, 34, 34, 0.75);
+  font-family: "DSEG7-Classic", monospace;
+
+  width: var(--width-LCD);
+
+  letter-spacing: 2;
+  font-size: var(--lcd-font-size);
+  height: var(--lcd-readout-height);
 }
 
-@media (max-width: 1500PX) {
+@media (max-width: 1500px) {
   .wrapper {
     height: var(--lcd-readout-height-1250);
   }

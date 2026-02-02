@@ -1,22 +1,25 @@
 .wrapper {
-    background-image: linear-gradient(rgb(40, 40, 40), rgb(40, 40, 40), rgb(30, 30, 30), rgb(20, 20, 20));
-    /* margin: 2vh 0; */
-    padding: 1vh .5vw;
-    border-radius: var(--lcd-readout-border-radius);
-    height: 50px;
-    display: flex;
-    align-items: center;
+  background-image: linear-gradient(
+    rgb(40, 40, 40),
+    rgb(40, 40, 40),
+    rgb(30, 30, 30),
+    rgb(20, 20, 20)
+  );
+  /* margin: 2vh 0; */
+  padding: 1vh 0.5vw;
+  border-radius: var(--lcd-readout-border-radius);
+  height: 50px;
+  display: flex;
+  align-items: center;
 }
 
 .body {
-    display: flex;
-    gap: 5px;
+  display: flex;
+  gap: 5px;
 }
 
-
-@media (max-width: 1500PX) {
+@media (max-width: 1500px) {
   .wrapper {
     height: var(--lcd-readout-height-1250);
   }
-
 }

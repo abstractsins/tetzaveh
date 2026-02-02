@@ -1,80 +1,82 @@
 .wrapper {
-    background-image: linear-gradient(rgb(40, 40, 40), var(--background) 20%, black 80%);
-    display: flex;
-    margin: 2px;
-    padding: 2vh 1vw;
-    width: clamp(300px, 10vw, 600px);
-    border: 1px solid var(--foreground);
-    border-radius: 10px;
-    transition: all .2s;
-    justify-content: space-between;
+  background-image: linear-gradient(
+    rgb(40, 40, 40),
+    var(--background) 20%,
+    black 80%
+  );
+  display: flex;
+  margin: 2px;
+  padding: 2vh 1vw;
+  width: clamp(300px, 10vw, 600px);
+  border: 1px solid var(--foreground);
+  border-radius: 10px;
+  transition: all 0.2s;
+  justify-content: space-between;
 }
 
 .wrapper:hover {
-    cursor: pointer;
-    border-color: var(--hover-item-border-color);
-    box-shadow: var(--hover-item-box-shadow);
+  cursor: pointer;
+  border-color: var(--hover-item-border-color);
+  box-shadow: var(--hover-item-box-shadow);
 }
 
 .trackTitleVerse {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .wordCountWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: .5vh .25vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5vh 0.25vw;
 }
 
 .wordCountLabel {
-    font-family: var(--barlow-semi-condensed);
-    text-transform: uppercase;
-    color: darkgray;
+  font-family: var(--barlow-semi-condensed);
+  text-transform: uppercase;
+  color: darkgray;
 }
 
 .wordCountValue {
-    font-size: clamp(12pt, 1vw, 24pt);
+  font-size: clamp(12pt, 1vw, 24pt);
 }
 
 .wrapper.playing {
-    border-color: var(--playing-border-color);
-    box-shadow: var(--playing-box-shadow);
-    /* optional subtle animation */
-    /* transition: box-shadow 0.3s ease, border-color 0.3s ease; */
+  border-color: var(--playing-border-color);
+  box-shadow: var(--playing-box-shadow);
+  /* optional subtle animation */
+  /* transition: box-shadow 0.3s ease, border-color 0.3s ease; */
 }
 
-@media (max-width: 1550PX) {
-    .wrapper {
-        width: clamp(200px, 20vw, 275px);
-        /* height: clamp(150px, 40vh, 350px); */
-    }
+@media (max-width: 1550px) {
+  .wrapper {
+    width: clamp(200px, 20vw, 275px);
+    /* height: clamp(150px, 40vh, 350px); */
+  }
 
-    .wordCountValue {
-        font-size: clamp(10pt, 1vw + .25rem, 14pt);
-    }
+  .wordCountValue {
+    font-size: clamp(10pt, 1vw + 0.25rem, 14pt);
+  }
 
-    .trackTitleVerse h2 {
-        font-size: clamp(16pt, 1vw, 22pt);
-    }
-
+  .trackTitleVerse h2 {
+    font-size: clamp(16pt, 1vw, 22pt);
+  }
 }
 
+@media (max-width: 1100px) {
+  .trackTitleVerse h2 {
+    font-size: clamp(8pt, 1.25vw + 0.25rem, 16pt);
+  }
 
-@media (max-width: 1100PX) {
-    .trackTitleVerse h2 {
-        font-size: clamp(8pt, 1.25vw + .25rem, 16pt);
-    }
-
-    .trackTitleVerse span {
-        font-size: clamp(6pt, 1.25vw, 14pt);
-    }
+  .trackTitleVerse span {
+    font-size: clamp(6pt, 1.25vw, 14pt);
+  }
 }
 
-@media (max-width: 900PX) {
-    .wrapper {
-        width: clamp(175px, 10vw, 600px);
-    }
+@media (max-width: 900px) {
+  .wrapper {
+    width: clamp(175px, 10vw, 600px);
+  }
 }

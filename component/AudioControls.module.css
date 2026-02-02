@@ -1,39 +1,39 @@
 .headerControls {
-    display: flex;
-    align-items: center;
-    /* background-color: rgba(112, 128, 144, 0.5); */
-    border-radius: 7px;
-    padding: 2px 7px;
-    margin: 0 15px;
-    /* width: 100%; */
+  display: flex;
+  align-items: center;
+  /* background-color: rgba(112, 128, 144, 0.5); */
+  border-radius: 7px;
+  padding: 2px 7px;
+  margin: 0 15px;
+  /* width: 100%; */
 }
 
 .loopBtn {
-    background-color: none;
-    border: 1px solid transparent;
-    padding: 4px 7px;
-    border-radius: 7px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: fit-content;
-    cursor: pointer;
-    transition: all 250ms;
-    font-size: 16pt;
-    color: silver;
+  background-color: none;
+  border: 1px solid transparent;
+  padding: 4px 7px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  cursor: pointer;
+  transition: all 250ms;
+  font-size: 16pt;
+  color: silver;
 }
 
 .loopBtn:hover {
-    border: 1px solid whitesmoke;
-    color: whitesmoke;
+  border: 1px solid whitesmoke;
+  color: whitesmoke;
 }
 
 .loopBtn.looping {
-    background-color: rgb(40, 40, 40);
-    color: gold;
+  background-color: rgb(40, 40, 40);
+  color: gold;
 }
 
 .buttonLabel {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }

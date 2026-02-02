@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -23,24 +19,12 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@comp/*": [
-        "./component/*"
-      ],
-      "@style/*": [
-        "./style/*"
-      ],
-      "@types": [
-        "./type/types.ts"
-      ],
-      "@utils": [
-        "./utils/utils.ts"
-      ],
-      "@audio/*": [
-        "./public/audio/*"
-      ]
+      "@/*": ["./*"],
+      "@comp/*": ["./component/*"],
+      "@style/*": ["./style/*"],
+      "@types": ["./type/types.ts"],
+      "@utils": ["./utils/utils.ts"],
+      "@audio/*": ["./public/audio/*"]
     }
   },
   "include": [
@@ -52,7 +36,5 @@
     "app/player/layout.tsx",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

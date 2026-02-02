@@ -1,47 +1,47 @@
 .wrapper {
-    border-radius: 10px;
-    min-height: 5vh;
-    width: 100%;
-    border: 1px solid transparent;
-    transition: all 200ms;
-    padding: 1vh .5vw;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+  border-radius: 10px;
+  min-height: 5vh;
+  width: 100%;
+  border: 1px solid transparent;
+  transition: all 200ms;
+  padding: 1vh 0.5vw;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .wrapper:hover {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-color: var(--hover-item-border-color);
-    box-shadow: var(--hover-item-box-shadow);
-    cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-color: var(--hover-item-border-color);
+  box-shadow: var(--hover-item-box-shadow);
+  cursor: pointer;
 }
 
 .body {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
-    font-size: clamp(10pt, 1vw + .25rem, 14pt);
+  font-size: clamp(10pt, 1vw + 0.25rem, 14pt);
 }
 
 .numTracksWrapper {
-    display: flex;
-    align-items: baseline;
-    gap: 5px;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
 }
 
 .wrapper.playing {
-    border-color: var(--playing-border-color);
-    box-shadow: var(--playing-box-shadow);
+  border-color: var(--playing-border-color);
+  box-shadow: var(--playing-box-shadow);
 }
 
 .numTracksLabel {
-    text-transform: uppercase;
-    font-size: clamp(8pt, .75vw + .25rem, 10pt);
+  text-transform: uppercase;
+  font-size: clamp(8pt, 0.75vw + 0.25rem, 10pt);
 }
 
 .numTracksValue {
-    font-size: clamp(9pt, 1.25vw + .25rem, 14pt);
+  font-size: clamp(9pt, 1.25vw + 0.25rem, 14pt);
 }

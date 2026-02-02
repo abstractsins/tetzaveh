@@ -1,54 +1,53 @@
 .wrapper {
-    border: 1px solid transparent;
-    padding: 4px 7px;
-    border-radius: 7px;
-    color: whitesmoke;
-    transition: all 150ms;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 16pt;
-    transition: all 250ms;
+  border: 1px solid transparent;
+  padding: 4px 7px;
+  border-radius: 7px;
+  color: whitesmoke;
+  transition: all 150ms;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16pt;
+  transition: all 250ms;
 }
 
-.wrapper:not([class*='disabled']):hover {
-    cursor: pointer;
-    color: gold;
-    border: 1px solid whitesmoke;
+.wrapper:not([class*="disabled"]):hover {
+  cursor: pointer;
+  color: gold;
+  border: 1px solid whitesmoke;
 }
 
 .wrapper:active,
 .on {
-    background-color: var(--background);
-    color: gold;
-    border-color: slategray;
+  background-color: var(--background);
+  color: gold;
+  border-color: slategray;
 }
 
 .pause {
-    color: yellow
+  color: yellow;
 }
 
 .stop {
-    color: firebrick;
+  color: firebrick;
 }
 
 .play {
-    color: greenyellow;
+  color: greenyellow;
 }
 
 .prevTrack,
 .nextTrack {
-    color: cyan;
+  color: cyan;
 }
 
-
-@media (max-width: 1500PX) {
+@media (max-width: 1500px) {
   .wrapper {
     font-size: var(--lcd-font-size);
-    padding: 0vh .5vw;
+    padding: 0vh 0.5vw;
   }
 
   .wrapper svg {
-    width:  var(--lcd-font-size);
+    width: var(--lcd-font-size);
   }
 }

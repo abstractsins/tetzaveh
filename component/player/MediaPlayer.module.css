@@ -1,78 +1,82 @@
 .wrapper {
-    background-image: linear-gradient(rgb(30, 30, 30), rgb(10, 10, 10), black, black);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border: 3px solid rgba(211, 211, 211, 0.75);
-    border-radius: var(--radius-main);
-    width: var(--width-main-full);
-    height: clamp(150px, 33vh, 350px);
+  background-image: linear-gradient(
+    rgb(30, 30, 30),
+    rgb(10, 10, 10),
+    black,
+    black
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 3px solid rgba(211, 211, 211, 0.75);
+  border-radius: var(--radius-main);
+  width: var(--width-main-full);
+  height: clamp(150px, 33vh, 315px);
 }
 
 .body {
-    display: flex;
-    padding: 1vh 2vw;
+  display: flex;
+  padding: 1vh 2vw;
 }
 
 .currentTrack {
-    display: flex;
-    height: 100%;
-    row-gap: 12px;
-    min-height: 120px;
+  display: flex;
+  height: 100%;
+  row-gap: 12px;
+  min-height: 120px;
 }
 
 .nowPlayingHeader h2 {
-    font-family: var(--barlow-semi-condensed);
-    margin-bottom: 2vh;
-    font-weight: 400;
-    color: silver;
+  font-family: var(--barlow-semi-condensed);
+  margin-bottom: 2vh;
+  font-weight: 400;
+  color: silver;
 }
 
-.artwork {}
-
+.artwork {
+}
 
 .artistName {
-    color: whitesmoke;
+  color: whitesmoke;
 }
 
 .controlArea {
-    display: flex;
+  display: flex;
 }
 
 .leftSide {
-    display: flex;
-    flex-direction: column;
-    width: 33%;
+  display: flex;
+  flex-direction: column;
+  width: 33%;
 }
 
 .rightSide {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
 }
 
 .subWaveInfo {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 80px;
 }
 
-@media (max-width: 1800PX) {
-    .wrapper {
-        width: var(--width-main-1800);
-    }
+@media (max-width: 1800px) {
+  .wrapper {
+    width: var(--width-main-1800);
+  }
 }
 
+@media (max-width: 1500px) {
+  .wrapper {
+    width: var(--width-main-1500);
+  }
 
-@media (max-width: 1500PX) {
-    .wrapper {
-        width: var(--width-main-1500);
-    }
-
-    .leftSide {
-        width: 27%;
-    }
+  .leftSide {
+    width: 27%;
+  }
 }

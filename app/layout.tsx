@@ -1,44 +1,42 @@
 import type { Metadata } from "next";
 
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
 
 import "@style/globals.css";
 import "@style/mediaPlayerGlobal.css";
 
-import 'dseg/css/dseg.css';
+import "dseg/css/dseg.css";
 
 import {
   Geist,
   Geist_Mono,
   Barlow_Semi_Condensed,
-  Eagle_Lake
+  Eagle_Lake,
 } from "next/font/google";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-  display: "block"
-
+  display: "block",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-  display: "block"
+  display: "block",
 });
 
 const barlowSemiCondensed = Barlow_Semi_Condensed({
   variable: "--barlow-semi-condensed",
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  display: "block"
+  display: "block",
 });
 
 const eagleLake = Eagle_Lake({
   variable: "--eagle-lake",
   weight: "400",
-  display: "block"
+  display: "block",
 });
-
 
 export const metadata: Metadata = {
   title: "Tetzaveh Media Player",
@@ -59,6 +57,6 @@ export default function RootLayout({
         {children}
         <Analytics />
       </body>
-    </html >
+    </html>
   );
 }

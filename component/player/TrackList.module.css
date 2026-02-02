@@ -18,7 +18,6 @@
   gap: 1vw;
   margin-top: 2vh;
   margin-bottom: 3rem !important;
-
 }
 
 .body::after {
@@ -27,10 +26,8 @@
   height: 2vh;
 }
 
-
-@media (max-width: 1550PX) {
+@media (max-width: 1550px) {
   .wrapper {
     width: clamp(600px, 100%, 1500px);
   }
 }
-

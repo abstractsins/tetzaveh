@@ -1,42 +1,40 @@
 .body {
-    background-color: var(--background-2);
-    display: flex;
-    flex-direction: column;
-    border-radius: 25px;
-    margin: 5vh 2.5vw;
-    width: 60%;
-    padding: 5vh 1.5vw;
-    align-items: center;
-    justify-content: center;
-
+  background-color: var(--background-2);
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px;
+  margin: 5vh 2.5vw;
+  width: 60%;
+  padding: 5vh 1.5vw;
+  align-items: center;
+  justify-content: center;
 }
 
 .clipBody {
-    border: 3px solid var(--foreground);
-    border-radius: 25px;
-    padding: 5vh 1.5vw;
-    width: 100%;
-    background-color: var(--background-3);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 2vw;
+  border: 3px solid var(--foreground);
+  border-radius: 25px;
+  padding: 5vh 1.5vw;
+  width: 100%;
+  background-color: var(--background-3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2vw;
 }
 
 .header {
-    display: flex;
-    margin: 2vh 1vw;
-    width: 100%;
+  display: flex;
+  margin: 2vh 1vw;
+  width: 100%;
 }
 
 .headerTitles {
-    display: flex;
-    flex-direction: column;
-    min-width: fit-content;
+  display: flex;
+  flex-direction: column;
+  min-width: fit-content;
 }
 
-
 .clipBody audio {
-    width: 100%;
+  width: 100%;
 }
