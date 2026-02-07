@@ -69,7 +69,6 @@ export default function ControlPanel() {
   };
 
   const handleStop = () => {
-    console.log(currentTrack);
     if (currentTrack) {
       setPaused(false);
       setPlaying(false);

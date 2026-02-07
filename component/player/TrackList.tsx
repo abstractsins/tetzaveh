@@ -76,12 +76,15 @@ export default function TrackList() {
           const isInLoop =
             loopRange && i >= loopRange.start && i <= loopRange.end;
           const isDisabled = loopRange && !isInLoop;
-          
+
           // Check if this is the loopStartTrack (when only start is set, not end yet)
-          const isLoopStart = loopStartTrack && !loopEndTrack && 
-            (track.src === loopStartTrack.src || 
-             `${track.title}|${track.verse}` === `${loopStartTrack.title}|${loopStartTrack.verse}`);
-          
+          const isLoopStart =
+            loopStartTrack &&
+            !loopEndTrack &&
+            (track.src === loopStartTrack.src ||
+              `${track.title}|${track.verse}` ===
+                `${loopStartTrack.title}|${loopStartTrack.verse}`);
+
           const classNames = [];
 
           if (i === currentTrackIndex) classNames.push("playing");
