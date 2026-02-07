@@ -55,6 +55,17 @@
   box-shadow: var(--loop-point-box-shadow);
 }
 
+.wrapper.looping:hover {
+  border-color: var(--hover-item-border-color);
+  box-shadow: var(--hover-item-box-shadow);
+}
+
+.wrapper.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+  filter: grayscale(0.5);
+}
+
 @media (max-width: 1550px) {
   .wrapper {
     width: clamp(200px, 20vw, 275px);

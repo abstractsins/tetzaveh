@@ -14,7 +14,6 @@ import {
   useEffect,
   createContext,
   useContext,
-  use,
 } from "react";
 
 // WAVESURFER
@@ -68,32 +67,38 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
   const [loopEndTrack, setLoopEndTrack] = useState<Track | null>(null);
   const [loopPointsSet, setLoopPointsSet] = useState<boolean>(false);
 
+  // identify a track uniquely
+  const keyOf = (t: TrackFullMeta | null) =>
+    t?.src || `${t?.title}|${t?.verse}`;
+
   const clearLoopPoints = useCallback(() => {
     setLoopStartTrack(null);
     setLoopEndTrack(null);
     setIsSelectingLoop(false);
     setLoopPointsSet(false);
-    console.log("Loop points cleared");
   }, []);
 
-  useEffect(() => {
-    console.log("Selecting loop:", isSelectingLoop);
-  }, [isSelectingLoop]);
-
-  useEffect(() => {
-    console.log("Loop points set:", loopPointsSet);
-    console.log({
-      start: loopStartTrack?.title,
-      end: loopEndTrack?.title,
-    });
-    // calculate the looping segment for class highlighting in TrackList
-
-    // actually loop the tracks
-  }, [loopPointsSet]);
-
-  // identify a track uniquely
-  const keyOf = (t: TrackFullMeta | null) =>
-    t?.src || `${t?.title}|${t?.verse}`;
+  // Calculate loop range indices
+  const loopRange = useMemo(() => {
+    if (
+      !loopPointsSet ||
+      !currentPlaylist ||
+      !loopStartTrack ||
+      !loopEndTrack
+    ) {
+      return null;
+    }
+    const startIdx = currentPlaylist.tracks.findIndex(
+      (t) => keyOf(t) === keyOf(loopStartTrack),
+    );
+    const endIdx = currentPlaylist.tracks.findIndex(
+      (t) => keyOf(t) === keyOf(loopEndTrack),
+    );
+    if (startIdx === -1 || endIdx === -1 || startIdx > endIdx) {
+      return null;
+    }
+    return { start: startIdx, end: endIdx };
+  }, [loopPointsSet, currentPlaylist, loopStartTrack, loopEndTrack]);
 
   const waveRef = useRef<WaveSurfer | null>(null);
   const shouldAutoplayRef = useRef(false);
@@ -207,12 +212,27 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
     if (!currentPlaylist) return;
     if (currentPlaylist.tracks.length === 0) return;
     shouldAutoplayRef.current = isPlaying || isAutoPlay;
-    console.log(index);
     if (index < 0) {
       // failsafe
       playTrackAt(0);
       return;
     }
+
+    // Check if we're in a loop
+    if (loopRange) {
+      // If we're at the loop end, jump back to loop start
+      if (index >= loopRange.end) {
+        playTrackAt(loopRange.start);
+        return;
+      }
+      // If we're within the loop, proceed to next track
+      if (index >= loopRange.start && index < loopRange.end) {
+        playTrackAt(index + 1);
+        return;
+      }
+    }
+
+    // Normal behavior (no loop)
     const last = currentPlaylist.tracks.length - 1;
     if (index < last) playTrackAt(index + 1);
     else if (loopListRef.current) playTrackAt(0);
@@ -220,16 +240,32 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
       setPlaying(false);
       setPaused(false);
     }
-  }, [index, currentPlaylist, isPlaying, isAutoPlay, playTrackAt]);
+  }, [index, currentPlaylist, isPlaying, isAutoPlay, playTrackAt, loopRange]);
 
   const prevTrack = useCallback(() => {
     if (!currentPlaylist) return;
     if (currentPlaylist.tracks.length === 0) return;
     shouldAutoplayRef.current = isPlaying;
+
+    // Check if we're in a loop
+    if (loopRange) {
+      // If we're at the loop start, jump to loop end
+      if (index <= loopRange.start) {
+        playTrackAt(loopRange.end);
+        return;
+      }
+      // If we're within the loop, go to previous track
+      if (index > loopRange.start && index <= loopRange.end) {
+        playTrackAt(index - 1);
+        return;
+      }
+    }
+
+    // Normal behavior (no loop)
     if (index > 0) playTrackAt(index - 1);
     else if (loopListRef.current)
       playTrackAt(currentPlaylist.tracks.length - 1);
-  }, [index, currentPlaylist, isPlaying, playTrackAt]);
+  }, [index, currentPlaylist, isPlaying, playTrackAt, loopRange]);
 
   const seekToZero = useCallback(() => {
     waveRef.current?.seekTo(0);
@@ -285,6 +321,15 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
     setCurrentTrack(currentPlaylist?.tracks[0]);
   }, [currentPlaylist]);
 
+  // Handle loop activation - jump to loop start if current track is outside loop
+  useEffect(() => {
+    if (loopPointsSet && loopRange && isPlaying) {
+      if (index < loopRange.start || index > loopRange.end) {
+        playTrackAt(loopRange.start);
+      }
+    }
+  }, [loopPointsSet, loopRange, isPlaying, index, playTrackAt]);
+
   const value: MediaPlayerContextValue = useMemo(
     () => ({
       currentTrack,
@@ -334,6 +379,7 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
       setIsSelectingLoop,
       loopPointsSet,
       setLoopPointsSet,
+      loopRange,
     }),
     [
       currentTrack,
@@ -375,6 +421,7 @@ export function MediaPlayerProvider({ children }: PlayerContextProps) {
       setIsSelectingLoop,
       loopPointsSet,
       setLoopPointsSet,
+      loopRange,
     ],
   );
 

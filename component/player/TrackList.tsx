@@ -18,6 +18,7 @@ export default function TrackList() {
     setLoopStartTrack,
     loopEndTrack,
     setLoopEndTrack,
+    loopRange,
   } = useMediaPlayer();
 
   const tracks = currentPlaylist?.tracks;
@@ -71,22 +72,40 @@ export default function TrackList() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.body}>
-        {tracks?.map((track, i) => (
-          <div
-            key={track.src || `${track.title}|${track.verse}`}
-            ref={(el) => setItemRef(el, i)}
-          >
-            <TrackItem
-              onClick={() => handleClickTrack(track, i)}
-              key={`Tetzaveh-2-${i}`}
-              title={track.title}
-              src={track.src}
-              verse={track.verse}
-              wordCount={track.wordCount}
-              className={`${i === currentTrackIndex ? "playing" : ""}`}
-            />
-          </div>
-        ))}
+        {tracks?.map((track, i) => {
+          const isInLoop =
+            loopRange && i >= loopRange.start && i <= loopRange.end;
+          const isDisabled = loopRange && !isInLoop;
+          
+          // Check if this is the loopStartTrack (when only start is set, not end yet)
+          const isLoopStart = loopStartTrack && !loopEndTrack && 
+            (track.src === loopStartTrack.src || 
+             `${track.title}|${track.verse}` === `${loopStartTrack.title}|${loopStartTrack.verse}`);
+          
+          const classNames = [];
+
+          if (i === currentTrackIndex) classNames.push("playing");
+          else if (isInLoop || isLoopStart) classNames.push("looping");
+          if (isDisabled) classNames.push("disabled");
+
+          return (
+            <div
+              key={track.src || `${track.title}|${track.verse}`}
+              ref={(el) => setItemRef(el, i)}
+            >
+              <TrackItem
+                onClick={() => handleClickTrack(track, i)}
+                key={`Tetzaveh-2-${i}`}
+                title={track.title}
+                src={track.src}
+                verse={track.verse}
+                wordCount={track.wordCount}
+                className={classNames.join(" ")}
+                disabled={isDisabled}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

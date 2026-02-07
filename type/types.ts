@@ -123,4 +123,5 @@ export interface MediaPlayerContextValue {
   setLoopPointsSet: React.Dispatch<React.SetStateAction<boolean>>;
   loopPointsSet: boolean;
   clearLoopPoints: () => void;
+  loopRange: { start: number; end: number } | null;
 }

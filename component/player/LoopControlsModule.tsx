@@ -6,8 +6,6 @@ const renderLoopControls = () => {
   const {
     isSelectingLoop,
     setIsSelectingLoop,
-    setLoopStartTrack,
-    setLoopEndTrack,
     clearLoopPoints,
     currentPlaylist,
     loopPointsSet,
@@ -33,7 +31,7 @@ const renderLoopControls = () => {
             !currentPlaylist || (!isSelectingLoop && !loopPointsSet)
           }
         >
-          Clear
+          {isSelectingLoop ? "Cancel" : "Clear"}
         </li>
       </ul>
     </>

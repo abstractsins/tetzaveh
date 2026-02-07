@@ -7,6 +7,7 @@ interface Props {
   wordCount: number;
   className: string;
   onClick: () => void;
+  disabled: boolean | null;
 }
 
 export default function TrackItem({
@@ -15,11 +16,12 @@ export default function TrackItem({
   className,
   wordCount,
   onClick,
+  disabled = false,
 }: Props) {
   return (
     <div
       className={`${styles.wrapper} ${className ? styles[className] : ""}`}
-      onClick={onClick}
+      onClick={disabled ? undefined : onClick}
     >
       <div className={styles.trackTitleVerse}>
         <h2>{title}</h2>
